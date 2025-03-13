@@ -1,0 +1,43 @@
+# Bỏ qua thư mục biên dịch & output
+/bin/
+/build/
+/out/
+
+# Bỏ qua file biên dịch
+*.class
+*.jar
+*.war
+*.ear
+
+# Bỏ qua log và cache
+*.log
+*.cache
+*.tmp
+
+# Bỏ qua các file liên quan đến IDE
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# Bỏ qua file Maven và Gradle không cần thiết
+target/
+.mvn/
+.gradle/
+build/
+dependency-reduced-pom.xml
+
+# Bỏ qua các file hệ thống
+.DS_Store
+Thumbs.db
+
+# Bỏ qua file cấu hình hệ điều hành
+*.swp
+*.swo
