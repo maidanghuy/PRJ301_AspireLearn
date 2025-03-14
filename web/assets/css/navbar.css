@@ -1,0 +1,198 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2025, 10:07:52 PM
+    Author     : macbookpro
+*/
+
+.sidebar {
+    position: fixed;
+}
+
+.sidebar__logo {
+    display: block;
+    margin-bottom: 4rem;
+}
+
+.sidebar__logo-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar__nav {}
+
+.sidebar__item {
+    padding: 1.4rem 2rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.sidebar__item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    /* Màu nền nhẹ khi hover */
+}
+
+.sidebar__item:active {
+    transform: scale(0.98);
+    /* Hiệu ứng nhấn xuống */
+}
+
+.sidebar__item+.sidebar__item {
+    margin-top: 1.4rem;
+}
+
+/* Khi item được active */
+.sidebar__item--active {
+    background-color: var(--primary-color);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    /* Làm nổi bật hơn một chút */
+}
+
+/* Khi hover vào item đang active */
+.sidebar__item--active:hover {
+    background-color: var(--primary-dark-color);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    /* Hiệu ứng đổ bóng rõ hơn */
+}
+
+.sidebar__icon {
+    margin-right: 2.6rem;
+}
+
+.sidebar__link {
+    color: #6A655C;
+    font-size: 1.8rem;
+}
+
+.sidebar__item--active>.sidebar__link {
+    color: #fff;
+    font-weight: 600;
+
+}
+
+.sidebar__text {}
+
+.navbar {
+    /*background-color: #333;*/
+    /* Màu nền cho navbar */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar button {
+    color: #fff;
+    /* Màu chữ cho nút */
+    transition: color 0.3s ease;
+    /* Hiệu ứng chuyển tiếp */
+}
+
+.navbar button:hover {
+    color: #ffcc00;
+    /* Màu chữ khi hover */
+}
+
+.sidebar__nav a {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar__nav a:hover {
+    background-color: rgba(230, 230, 230, 0.3);
+    backdrop-filter: blur(10px);
+    color: #222;
+}
+
+.btn-close {
+    position: absolute;
+    top: 0;
+    right: -25px;
+}
+
+@media screen and (max-width:992px) {
+    .sidebar {
+        width: 6rem;
+        top: 2rem;
+        left: 0;
+    }
+
+    .sidebar__logo {
+        width: 14rem;
+        margin-left: 0.5rem;
+    }
+
+    .sidebar__logo {
+        margin-bottom: 4rem;
+        width: 14rem;
+        margin-left: 6px;
+    }
+
+    .sidebar__item {
+        padding: 0;
+        border-radius: unset;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .sidebar__item--active {
+        background-color: unset;
+        box-shadow: unset;
+    }
+
+
+    .sidebar__item--active::after {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 100%;
+        background-color: var(--primary-color);
+        bottom: 0;
+        left: 0;
+    }
+
+
+    .sidebar__item--active:hover {
+        background-color: unset;
+        box-shadow: unset;
+    }
+
+    .sidebar__icon {
+        width: 1.6rem;
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+
+    .sidebar__item--active>.sidebar__link {
+        /* color: #000; */
+        font-weight: 600;
+    }
+
+    .sidebar__link {
+        color: #000 !important;
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .sidebar__logo {
+        margin-top: 2rem;
+
+    }
+
+    .navbar {
+        padding: 0.5rem;
+    }
+}
