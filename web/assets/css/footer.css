@@ -1,0 +1,140 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2025, 11:00:43 PM
+    Author     : macbookpro
+*/
+
+footer {
+    background-color: var(--secondary-color);
+    /* margin-left: -3rem; */
+}
+
+footer .container-1024 {
+    margin: 0;
+    width: 100%;
+}
+
+.footer {
+    background-color: #f3f3f3;
+    padding: 40px 0px;
+    padding-bottom: 0;
+    font-family: Arial, sans-serif;
+}
+
+.footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer__logo img {
+    object-fit: cover;
+}
+
+.footer__container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+    /* border-top: 1px solid #ddd; */
+}
+
+.footer__container::before {
+    content: "";
+    position: absolute;
+    /* display: block; */
+    width: calc(100% + 4rem);
+    height: 1px;
+    top: 0rem;
+    left: -2rem;
+    border-radius: 9999px;
+    background-color: #ddd;
+}
+
+.footer__left,
+.footer__right {
+    flex: 1;
+}
+
+.footer__logo-image img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.footer__description {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer__contact-item {
+    margin-bottom: 15px;
+}
+
+.footer__contact-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.footer__contact-info {
+    color: #555;
+    font-size: 14px;
+}
+
+.footer__social {
+    margin-left: -2rem;
+    background-color: #bbb;
+    text-align: end;
+    width: calc(100% + 4rem);
+}
+
+.footer__social-link {
+    margin: 0 10px;
+    color: #333;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer__social-link:hover {
+    color: #007bff;
+}
+
+.fa-facebook {
+    color: #3b5998;
+}
+
+.fa-linkedin {
+    color: #0077b5;
+}
+
+.fa-envelope {
+    color: rgba(139, 139, 34, 0.732);
+}
+
+.fa-youtube {
+    color: #ff0000;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .footer__container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer__left,
+    .footer__right {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}

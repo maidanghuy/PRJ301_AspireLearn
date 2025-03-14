@@ -1,0 +1,85 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 14, 2025, 9:44:33 PM
+    Author     : macbookpro
+*/
+
+:root {
+  --primary-light-color: #FFC166;
+  /* Màu nhạt hơn của primary */
+  --primary-color: #FB9400;
+  /* Màu chính */
+  --primary-dark-color: #D97706;
+  /* Màu đậm hơn */
+  --secondary-color: #F3F3F3;
+  /* Màu nền phụ */
+  --text-color: #333;
+  /* Màu chữ chính */
+  --text-light-color: #666;
+  /* Màu chữ phụ */
+}
+
+.container-custom {
+  display: flex;
+  margin: 0 auto;
+}
+
+.container-left {
+  width: 320px;
+  background-color: #FFF4E5;
+  color: white;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.container-right {
+  position: relative;
+  max-width: calc(100% - 320px);
+  padding-top: 2rem;
+  background-color: #fff;
+}
+
+/* Main container */
+.main-content {
+  min-height: 100vh;
+}
+
+.container-1024 {
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container-custom {
+    max-width: 1200px;
+  }
+
+  .container-1024 {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 991.9px) {
+  .container-left {
+    width: 6rem;
+    padding: 2rem 1rem;
+  }
+
+  .container-right {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 767.9px) {
+  .container-left {
+    background-color: transparent;
+    width: 0;
+    padding: 2rem 0;
+    position: absolute;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+  }
+}
