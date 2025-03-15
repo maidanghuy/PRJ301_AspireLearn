@@ -1,0 +1,289 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 15, 2025, 9:46:42 AM
+    Author     : macbookpro
+*/
+
+.wrapper__banner {
+    position: relative;
+}
+
+.banner__image {
+    width: 100%;
+    border-radius: 30px;
+}
+
+.banner__content {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 5.2rem;
+    transform: translateY(-50%);
+    background-color: #00000099;
+    color: #fff;
+    border-radius: 15px;
+    padding: 4rem 3rem;
+    font-weight: 300;
+}
+
+.banner__title {
+    font-size: 5.8rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.banner__description {
+    line-height: 2.6rem;
+}
+
+.banner__control {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.banner__control--prev {
+    left: 0.8rem;
+}
+
+.banner__control--next {
+    right: 0.8rem;
+}
+
+.wrapper__banner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px;
+    /* Đặt chiều cao cố định cho banner */
+}
+
+.banner__slides {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.banner__slides.active {
+    opacity: 1;
+    position: relative;
+}
+
+.banner__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Nút điều hướng */
+.banner__control {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px;
+    border-radius: 50%;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner__control--prev {
+    left: 10px;
+}
+
+.banner__control--next {
+    right: 10px;
+}
+
+
+/* About */
+.wrapper__about {
+    display: flex;
+    gap: 3.2rem;
+}
+
+.about__text {
+    width: 55%;
+    text-align: end;
+}
+
+.title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.about__title {
+    text-align: left;
+}
+
+.about__description {
+    font-weight: 400;
+    text-align: justify;
+    line-height: 2.6rem;
+}
+
+.btn-detail {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+.about__img {
+    width: 45%;
+}
+
+.Content-3 h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.Content-3 p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Services */
+
+.wrapper__services {
+    text-align: center;
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #f3f3f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+}
+
+.feature-icon i {
+    font-size: 28px;
+    color: #333;
+}
+
+.services__feature {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    justify-items: center;
+}
+
+.feature {}
+
+.feature--item {}
+
+.feature__icon {
+    width: 7rem;
+    height: 7rem;
+    /* text-align: center; */
+    /* line-height: 8rem; */
+    background-color: var(--secondary-color);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.feature__icon img {}
+
+.feature__text {
+    color: #7b7d81;
+}
+
+@media screen and (max-width: 991.9px) {
+    .title {
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 767.9px) {
+    .banner__content {
+        padding: 2rem 1.5rem;
+    }
+
+    .title {
+        margin-bottom: 0.6rem;
+        font-size: 2rem;
+    }
+
+    .banner__description {
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+
+    .wrapper__about {
+        flex-direction: column;
+    }
+
+    .about__description {
+        margin-bottom: 1.4rem;
+    }
+
+    .about__text,
+    .about__img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 991.9px) {
+    .title {
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width:767.9px) {
+    .banner__content {
+        padding: 2rem 1.5rem;
+    }
+
+    .title {
+        margin-bottom: 0.6rem;
+        font-size: 2rem;
+    }
+
+    .banner__description {
+        font-size: 1.4rem;
+        line-height: 2rem;
+    }
+
+    .wrapper__about {
+        flex-direction: column;
+    }
+
+    .about__description {
+        margin-bottom: 1.4rem;
+    }
+
+    .about__text,
+    .about__img {
+        width: 100%;
+
+    }
+
+}
