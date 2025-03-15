@@ -14,11 +14,9 @@
         <link rel="stylesheet" href="${css}/navbar.css" />
         <link rel="stylesheet" href="${css}/header.css" />
         <link rel="stylesheet" href="${css}/footer.css" />
-
     </head>
 
     <body>
-
         <div class="container-custom">
             <div class="container-left">
                 <%@ include file="./includes/navbar.jsp" %>
@@ -36,7 +34,7 @@
                                         <div class="banner__content">
                                             <h1 class="banner__title title">G-Easy Learning!</h1>
                                             <p class="banner__description">
-                                                Nâng cao kỹ năng lập trình với G-Easy Learning.
+                                                Enhance Your Skills with G-Easy Learning! 🚀
                                             </p>
                                         </div>
                                     </div>
@@ -46,7 +44,7 @@
                                         <div class="banner__content">
                                             <h1 class="banner__title title">Learn Anywhere!</h1>
                                             <p class="banner__description">
-                                                Học tập mọi lúc, mọi nơi với các khóa học chất lượng.
+                                                Learn Anytime, Anywhere with High-Quality Courses! 🎓🌍
                                             </p>
                                         </div>
                                     </div>
@@ -56,7 +54,7 @@
                                         <div class="banner__content">
                                             <h1 class="banner__title title">Master Your Skills!</h1>
                                             <p class="banner__description">
-                                                Trở thành chuyên gia với lộ trình học phù hợp cho bạn.
+                                                Become an Expert with a Learning Path Tailored for You! 🚀🎓
                                             </p>
                                         </div>
                                     </div>
@@ -65,8 +63,9 @@
                                              alt="Banner 4">
                                         <div class="banner__content">
                                             <h1 class="banner__title title">Join Our Community!</h1>
-                                            <p class="banner__description">Tham gia cộng đồng học tập và
-                                                chia sẻ kiến thức.</p>
+                                            <p class="banner__description">
+                                                Join the Learning Community & Share Knowledge! 🌍📚
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="banner__slides">
@@ -74,8 +73,9 @@
                                              alt="Banner 5">
                                         <div class="banner__content">
                                             <h1 class="banner__title title">Your Future Starts Here!</h1>
-                                            <p class="banner__description">Bắt đầu hành trình học tập và
-                                                phát triển ngay hôm nay.</p>
+                                            <p class="banner__description">
+                                                Start Your Learning & Growth Journey Today! 🚀📚
+                                            </p>
                                         </div>
                                     </div>
                                     <span class="banner__control banner__control--prev">&#10094;</span>
@@ -85,97 +85,90 @@
                             <div class="mgb-5">
                                 <div class="wrapper__about">
                                     <div class="about__text">
-                                        <h2 class="about__title title">Về G-Easy Learning</h2>
+                                        <h2 class="about__title title">About G-Easy Learning</h2>
                                         <p class="about__description">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Quibusdam, tenetur
-                                            optio iste rem ad voluptatem ullam quis odio inventore sequi
-                                            illo, commodi atque
-                                            in voluptatibus aliquid fugiat possimus repellendus. Placeat,
-                                            hic totam ad
-                                            voluptatum saepe quidem voluptatem beatae, fugit, sunt explicabo
-                                            ullam.
-                                            Blanditiis necessitatibus placeat odio facere itaque voluptatem
-                                            numquam?
+                                            At G-Easy English Center, we believe that learning English
+                                            should be an easy and enjoyable journey for everyone. Our
+                                            mission is to provide high-quality English education through
+                                            modern teaching methods, experienced instructors, and a dynamic
+                                            learning environment. Whether you are a student looking to
+                                            improve your academic English, a professional aiming for career
+                                            advancement, or someone who simply wants to communicate
+                                            fluently, G-Easy has the right program for you.
                                         </p>
                                         <a class="btn btn-detail" href="#">
-                                            <span class="text text-white">Xem chi tiết</span>
+                                            <span class="text text-white">View Detail</span>
                                         </a>
                                     </div>
                                     <div class="about__img">
-                                        <img class="crile-2" src="${img}/banner/banner.png" alt="About">
+                                        <img class="crile-2" src="${img}/about/about-1.jpg" alt="About">
                                     </div>
                                 </div>
                             </div>
                             <div class="mgb-5">
                                 <div class="wrapper__services">
                                     <div class="services__text">
-                                        <h2 class="title services__title">G-Easy English</h2>
+                                        <h2 class="title services__title">G-Easy Learning</h2>
                                         <p class="services__description">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-                                            enim ratione
-                                            obcaecati, dolorum repudiandae praesentium a quis ab similique,
-                                            exercitationem
-                                            velit incidunt. Atque, error mollitia saepe amet ipsa in
-                                            delectus.
+                                            Our website offers a seamless learning experience with free
+                                            practice tests, interactive courses, and a rich library of study
+                                            materials. Easily track your progress, manage your account, and
+                                            get expert guidance—all in one place. Start learning today! 🚀
                                         </p>
                                     </div>
                                     <div class="services__feature">
-                                        <div class="feature feature--item">
+                                        <a href="${url}/view/material" class="feature feature--item">
                                             <div class="feature__icon">
                                                 <img src="${img}/navbar_icon/Leaf.svg" alt="">
                                             </div>
-                                            <div class="feature__text">Tài liệu <br /> miễn phí</div>
-                                        </div>
-                                        <div class="feature feature--item">
+                                            <div class="feature__text">Material <br /> Free</div>
+                                        </a>
+
+                                        <a href="${url}/view/material" class="feature feature--item">
                                             <div class="feature__icon">
                                                 <img src="${img}/navbar_icon/Book.svg" alt="">
                                             </div>
-                                            <div class="feature__text">Tài liệu <br /> Trả phí</div>
-                                        </div>
-                                        <div class="feature feature--item">
+                                            <div class="feature__text">Material <br /> Premium</div>
+                                        </a>
+                                        <a href="${url}/view/course" class="feature feature--item">
                                             <div class="feature__icon">
                                                 <img src="${img}/navbar_icon/Video.svg" alt="">
                                             </div>
-                                            <div class="feature__text">Khóa học <br /> Online</div>
-                                        </div>
-                                        <div class="feature feature--item">
+                                            <div class="feature__text">Course</div>
+                                        </a>
+                                        <a href="${url}/view/account" class="feature feature--item">
                                             <div class="feature__icon">
                                                 <img src="${img}/navbar_icon/User.svg" alt="">
                                             </div>
-                                            <div class="feature__text">Quản lý <br /> tài khoản</div>
-                                        </div>
-                                        <div class="feature feature--item">
+                                            <div class="feature__text">Manager <br /> Account</div>
+                                        </a>
+                                        <a href="#" class="feature feature--item">
                                             <div class="feature__icon">
                                                 <img src="${img}/icon/Chat.svg" alt="">
                                             </div>
-                                            <div class="feature__text">Tư vấn <br /> miễn phí</div>
-                                        </div>
+                                            <div class="feature__text">Consultation</div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="mgb-5">
                                 <div class="wrapper__about">
                                     <div class="about__text">
-                                        <h2 class="about__title title">Làm bài kiểm tra thử</h2>
+                                        <h2 class="about__title title">Take a Practice Test Now!</h2>
                                         <p class="about__description">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                            Quibusdam, tenetur
-                                            optio iste rem ad voluptatem ullam quis odio inventore sequi
-                                            illo, commodi atque
-                                            in voluptatibus aliquid fugiat possimus repellendus. Placeat,
-                                            hic totam ad
-                                            voluptatum saepe quidem voluptatem beatae, fugit, sunt explicabo
-                                            ullam.
-                                            Blanditiis necessitatibus placeat odio facere itaque voluptatem
-                                            numquam?
+                                            Are you ready to test your English skills? Our practice test is
+                                            designed to help you assess your current level, identify areas
+                                            for improvement, and gain confidence before taking an official
+                                            exam. Whether you are preparing for an academic test, a job
+                                            interview, or simply want to measure your progress, this is the
+                                            perfect opportunity to evaluate yourself.
                                         </p>
                                         <a class="btn btn-detail" href="#">
-                                            <span class="text text-white">Làm bài ngay</span>
+                                            <span class="text text-white">Test Now</span>
                                         </a>
                                     </div>
                                     <div class="about__img">
-                                        <img class="crile-2" src="${img}/banner/banner.png" alt="About">
+                                        <img class="crile-2" src="${img}/about/about-3.jpg" alt="About">
                                     </div>
                                 </div>
                             </div>
