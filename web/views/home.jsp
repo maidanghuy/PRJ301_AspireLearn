@@ -101,7 +101,7 @@
                                         </a>
                                     </div>
                                     <div class="about__img">
-                                        <img class="crile-2" src="${img}/banner/banner.png" alt="About">
+                                        <img class="crile-2" src="${img}/about/about-1.jpg" alt="About">
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
                                         </a>
                                     </div>
                                     <div class="about__img">
-                                        <img class="crile-2" src="${img}/banner/banner.png" alt="About">
+                                        <img class="crile-2" src="${img}/about/about-3.jpg" alt="About">
                                     </div>
                                 </div>
                             </div>
