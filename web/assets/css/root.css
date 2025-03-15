@@ -28,6 +28,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .container-left {
+  flex-shrink: 0;
   width: 320px;
   background-color: #FFF4E5;
   color: white;
@@ -47,19 +48,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   min-height: 100vh;
 }
 
-.container-1024 {
-  max-width: 1200px;
-  margin: 0 auto 5rem;
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 2rem 0;
+    /*background-color: #f8f9fa;*/
 }
+
+[class^="mgb-"] {
+  margin-bottom: var(--mb-size, 1rem);
+}
+
+.mgb-1 { --mb-size: 1rem; }
+.mgb-2 { --mb-size: 2rem; }
+.mgb-3 { --mb-size: 3rem; }
+.mgb-4 { --mb-size: 4rem; }
+.mgb-5 { --mb-size: 5rem; }
+
+
+[class^="crile-"] {
+  border-radius: var(--radius, 0);
+}
+
+.crile-1 { --radius: 1rem; }
+.crile-2 { --radius: 2rem; }
+.crile-50 { --radius: 50%; }
 
 @media screen and (max-width: 1200px) {
   .container-custom {
     max-width: 1200px;
   }
 
-  .container-1024 {
-    max-width: 100%;
-  }
 }
 
 @media screen and (max-width: 991.9px) {

@@ -120,12 +120,6 @@ footer .container-1024 {
     color: #ff0000;
 }
 
-.container {
-    margin: 0 auto;
-    padding: 2rem 2rem 0;
-    background-color: #f8f9fa;
-}
-
 @media (max-width: 768px) {
     .footer__container {
         flex-direction: column;

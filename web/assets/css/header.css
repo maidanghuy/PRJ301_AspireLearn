@@ -39,6 +39,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .btn-login:hover {}
 
-.text {}
+.text {
+    color: var(--text-color);
+}
 
 @media screen and (max-width: 767.9px) {}
