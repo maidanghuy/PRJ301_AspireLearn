@@ -35,10 +35,13 @@
             <img class="sidebar__icon" src="${img}/navbar_icon/News.svg" alt="Testing" />
             <span class="sidebar__link sidebar__text">Test</span>
         </a>
-        <a href="${url}/view/account" class="sidebar__item">
-            <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
-            <span class="sidebar__link sidebar__text">Account</span>
-        </a>
+        <c:if test="${not empty sessionScope.user}">
+            <a href="${url}/view/account" class="sidebar__item">
+                <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
+                <span class="sidebar__link sidebar__text">Account</span>
+            </a>
+        </c:if>
+
     </nav>
 </div>
 
@@ -63,9 +66,12 @@
             <img class="sidebar__icon" src="${img}/navbar_icon/News.svg" alt="Testing" />
             <span class="sidebar__link sidebar__text">Test</span>
         </a>
-        <a href="${url}/view/account" class="sidebar__item">
-            <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
-            <span class="sidebar__link sidebar__text">Account</span>
-        </a>
+        <c:if test="${not empty sessionScope.user}">
+            <a href="${url}/view/account" class="sidebar__item">
+                <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
+                <span class="sidebar__link sidebar__text">Account</span>
+            </a>
+        </c:if>
+
     </nav>
 </div>

@@ -146,7 +146,14 @@
 
 .btn-edit {
     background-color: #FB9400;
-    color: white;
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid #FB9400;
 }
 
 .btn-settings {

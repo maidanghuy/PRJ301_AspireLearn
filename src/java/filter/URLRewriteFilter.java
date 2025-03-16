@@ -23,17 +23,17 @@ import jakarta.servlet.http.HttpSession;
  * @author macbookpro
  */
 public class URLRewriteFilter implements Filter {
-    
+
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured.
     private FilterConfig filterConfig = null;
-    
+
     public URLRewriteFilter() {
     }
-    
+
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
@@ -61,7 +61,7 @@ public class URLRewriteFilter implements Filter {
 	}
          */
     }
-    
+
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
@@ -99,7 +99,7 @@ public class URLRewriteFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        
+
 //        if (debug) {
 //            log("URLRewriteFilter:doFilter()");
 //        }
@@ -130,7 +130,6 @@ public class URLRewriteFilter implements Filter {
 //            }
 //            sendProcessingError(problem, response);
 //        }
-
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         String requestURI = req.getRequestURI();
@@ -140,27 +139,36 @@ public class URLRewriteFilter implements Filter {
         // Remove context path from request URI
         String path = requestURI.substring(contextPath.length());
 
-        
-        //Auth
-        
+        //Auth        
         // -> Login gg
         if (path.matches("/auth/login") && request.getParameter("code") != null) {
             req.getRequestDispatcher("/DivideServlet?action=logingoogle").forward(request, response);
             return;
         }
-        
+
         // -> Login
         if (path.matches("/auth/login")) {
             req.getRequestDispatcher("/DivideServlet?action=login").forward(request, response);
             return;
         }
-        
+
         // -> register
         if (path.matches("/auth/register")) {
             req.getRequestDispatcher("/DivideServlet?action=register").forward(request, response);
             return;
         }
-        
+
+        // -> edit account
+        if (path.matches("/edit/account")) {
+            if (session.getAttribute("user") == null) {
+                String newPath = req.getContextPath() + "/auth/login";
+                resp.sendRedirect(newPath);
+                return;
+            }
+            req.getRequestDispatcher("/DivideServlet?action=editaccount").forward(request, response);
+            return;
+        }
+
         // View
         if (path.startsWith("/view/")) {
 
@@ -171,23 +179,24 @@ public class URLRewriteFilter implements Filter {
             }
 
             // Kiểm tra nếu chưa đăng nhập
-            if (action.equals("account")) {              
+            if (action.equals("account")) {
                 if (session.getAttribute("user") == null) {
                     String newPath = req.getContextPath() + "/auth/login";
                     resp.sendRedirect(newPath);
                     return;
                 }
             }
-            
+
             req.getRequestDispatcher("/DivideServlet?action=view" + action).forward(request, response);
             return;
         }
-        
+
+        // Logout
         if (path.matches("/logout")) {
             req.getRequestDispatcher("/DivideServlet?action=logout").forward(request, response);
             return;
         }
-        
+
         chain.doFilter(request, response);
 
     }
@@ -239,10 +248,10 @@ public class URLRewriteFilter implements Filter {
         sb.append(")");
         return (sb.toString());
     }
-    
+
     private void sendProcessingError(Throwable t, ServletResponse response) {
         String stackTrace = getStackTrace(t);
-        
+
         if (stackTrace != null && !stackTrace.equals("")) {
             try {
                 response.setContentType("text/html");
@@ -269,7 +278,7 @@ public class URLRewriteFilter implements Filter {
             }
         }
     }
-    
+
     public static String getStackTrace(Throwable t) {
         String stackTrace = null;
         try {
@@ -283,9 +292,9 @@ public class URLRewriteFilter implements Filter {
         }
         return stackTrace;
     }
-    
+
     public void log(String msg) {
         filterConfig.getServletContext().log(msg);
     }
-    
+
 }

@@ -166,6 +166,39 @@ public class UserDAO {
         }
         return user;
     }
+    
+    // Edit user from From edit
+    public boolean editUser(User user) {
+        PreparedStatement pstmt = null;
+
+        try {
+            String sql = "UPDATE Users SET username = ?, email = ?, dateOfBirth = ?, password = ?, updatedAt = GETDATE() WHERE userID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setDate(3, user.getDateOfBirth());
+            pstmt.setString(4, user.getPassword());
+            pstmt.setInt(5, user.getUserID());
+
+            int rowsUpdated = pstmt.executeUpdate(); // Chạy update trước khi đóng
+
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
