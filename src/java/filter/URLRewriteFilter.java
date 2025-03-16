@@ -173,7 +173,7 @@ public class URLRewriteFilter implements Filter {
             // Kiểm tra nếu chưa đăng nhập
             if (action.equals("account")) {              
                 if (session.getAttribute("user") == null) {
-                    String newPath = req.getContextPath() + "/login";
+                    String newPath = req.getContextPath() + "/auth/login";
                     resp.sendRedirect(newPath);
                     return;
                 }

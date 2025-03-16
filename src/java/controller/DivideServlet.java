@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.CourseDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import model.Course;
 import model.User;
 
 /**
@@ -100,10 +103,18 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewaccount" -> {
+                
+                CourseDAO cdao = new CourseDAO();
+                
+                HttpSession session = request.getSession();
+                User user = (User)session.getAttribute("user");
+                ArrayList<Course> listCourseOrder = cdao.getUserCourses(user.getUserID());
+                request.setAttribute("listCourseOrder", listCourseOrder);
+                request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
             }
             default -> {
-                request.getRequestDispatcher("view/learningpage.jsp").forward(request, response);
+                request.getRequestDispatcher("views/home.jsp").forward(request, response);
                 break;
             }
         }
