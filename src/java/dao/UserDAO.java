@@ -136,6 +136,47 @@ public class UserDAO {
             return false;
         }
     }
+    
+    // Get User from DB by Email
+    public User getUserByEmail(String email) {
+        User user = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM Users WHERE email = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+
+//            int userID, String role, String username, String password, String email, Date dateOfBirth, String status
+            if (rs.next()) {
+                user = new User(
+                        rs.getInt("userID"),
+                        null,
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getDate("dateOfBirth"),
+                        null
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
 
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();

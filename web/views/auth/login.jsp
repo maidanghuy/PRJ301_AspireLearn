@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" import="model.*,java.util.*, db.*, controller.*, constant.*, util.*" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../includes/path-config.jsp" %>
 <!DOCTYPE html>
@@ -78,7 +78,7 @@
                 </div>
                 <div style="margin: 0 auto;" class="col-12 col-lg-5 d-flex align-items-center">
                     <div class="d-flex gap-3 flex-column w-100 ">
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/AppLearningEnglish/logingg&response_type=code&client_id=531669307007-umgdjhisjepb5nqjhk1rvj5vhhlssnn0.apps.googleusercontent.com&approval_prompt=force"
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/AspireLearn/auth/login&response_type=code&client_id=${GoogleInfo.GOOGLE_CLIENT_ID}&approval_prompt=force"
                            class="btn btn-lg btn-danger" style="
                            display: flex;
                            justify-content: center;
