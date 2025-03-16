@@ -1,6 +1,6 @@
 <%-- Document : home Created on : Mar 13, 2025, 5:30:19 PM Author : macbookpro --%>
 
-<%@page contentType="text/html" import="model.*,java.util.*, db.*, controller.*, constant.*, util.*" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ include file="./includes/path-config.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -179,10 +179,9 @@
                 </footer>
             </div>
         </div>
+        <%@ include file="./includes/chatbot.jsp" %>      
         <script>
             const imgPath = "${img}";
-        </script>
-        <script>
             window.onload = function () {
                 let message = "${sessionScope.logoutMessage}";
                 if (message) {

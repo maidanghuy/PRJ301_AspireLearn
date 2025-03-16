@@ -44,3 +44,4 @@ Thumbs.db
 
 # Bỏ qua file chứa Key API
 src/java/constant/IGoogleInfo.java
+web/assets/js/config.js
