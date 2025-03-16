@@ -15,7 +15,6 @@
         <link rel="stylesheet" href="${css}/header.css" />
         <link rel="stylesheet" href="${css}/footer.css" />
     </head>
-
     <body>
         <div class="container-custom">
             <div class="container-left">
@@ -181,8 +180,18 @@
             </div>
         </div>
         <script>
-                    const imgPath = "${img}";
+            const imgPath = "${img}";
         </script>
+        <script>
+            window.onload = function () {
+                let message = "${sessionScope.logoutMessage}";
+                if (message) {
+                    alert(message);
+                }
+            };
+        </script>
+        <!-- Xóa logoutMessage ngay lập tức -->
+        <c:remove var="logoutMessage" scope="session" />
         <%@ include file="./includes/scripts.jsp" %>
         <script src="${js}/banner.js"></script>
     </body>

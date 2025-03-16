@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div class="">
+<div class="container">
     <div class="wrapper__header">
         <div class="wrapper__header-icon">
             <img src="${img}/icon/Shop.svg" alt="Shop SVG">
@@ -23,7 +23,7 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a class="btn btn-login" href="${url}/login">
+                    <a class="btn btn-login" href="${url}/auth/login">
                         <span class="text text-white">Login</span>
                     </a>
                 </c:otherwise>

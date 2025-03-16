@@ -7,11 +7,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : macbookpro
 */
 
+
+.main-content .container {
+    padding-top: 0;
+}
+
 .wrapper__header {
   display: flex;
   justify-content: flex-end;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .wrapper__header-icon {

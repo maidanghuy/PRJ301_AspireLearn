@@ -14,6 +14,9 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -97,36 +100,89 @@ public class URLRewriteFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
-        if (debug) {
-            log("URLRewriteFilter:doFilter()");
-        }
-        
-        doBeforeProcessing(request, response);
-        
-        Throwable problem = null;
-        try {
-            chain.doFilter(request, response);
-        } catch (Throwable t) {
-            // If an exception is thrown somewhere down the filter chain,
-            // we still want to execute our after processing, and then
-            // rethrow the problem after that.
-            problem = t;
-            t.printStackTrace();
-        }
-        
-        doAfterProcessing(request, response);
+//        if (debug) {
+//            log("URLRewriteFilter:doFilter()");
+//        }
+//        
+//        doBeforeProcessing(request, response);
+//        
+//        Throwable problem = null;
+//        try {
+//            chain.doFilter(request, response);
+//        } catch (Throwable t) {
+//            // If an exception is thrown somewhere down the filter chain,
+//            // we still want to execute our after processing, and then
+//            // rethrow the problem after that.
+//            problem = t;
+//            t.printStackTrace();
+//        }
+//        
+//        doAfterProcessing(request, response);
+//
+//        // If there was a problem, we want to rethrow it if it is
+//        // a known type, otherwise log it.
+//        if (problem != null) {
+//            if (problem instanceof ServletException) {
+//                throw (ServletException) problem;
+//            }
+//            if (problem instanceof IOException) {
+//                throw (IOException) problem;
+//            }
+//            sendProcessingError(problem, response);
+//        }
 
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-        if (problem != null) {
-            if (problem instanceof ServletException) {
-                throw (ServletException) problem;
-            }
-            if (problem instanceof IOException) {
-                throw (IOException) problem;
-            }
-            sendProcessingError(problem, response);
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        String requestURI = req.getRequestURI();
+        String contextPath = req.getContextPath();
+        HttpSession session = req.getSession();
+
+        // Remove context path from request URI
+        String path = requestURI.substring(contextPath.length());
+
+        
+        //Auth
+        // -> Login
+        if (path.matches("/auth/login")) {
+            req.getRequestDispatcher("/DivideServlet?action=login").forward(request, response);
+            return;
         }
+        
+        // -> register
+        if (path.matches("/auth/register")) {
+            req.getRequestDispatcher("/DivideServlet?action=register").forward(request, response);
+            return;
+        }
+        
+        // View
+        if (path.startsWith("/view/")) {
+
+            String action = path.substring(6); // Remove "/view/" prefix
+            // Kiểm tra xem action có hợp lệ không
+            if (!action.matches("home|material|course|test|account")) {
+                action = "home"; // Mặc định là "home" nếu không hợp lệ
+            }
+
+            // Kiểm tra nếu chưa đăng nhập
+            if (action.equals("account")) {              
+                if (session.getAttribute("user") == null) {
+                    String newPath = req.getContextPath() + "/login";
+                    resp.sendRedirect(newPath);
+                    return;
+                }
+            }
+            
+            req.getRequestDispatcher("/DivideServlet?action=view" + action).forward(request, response);
+            return;
+        }
+        
+        if (path.matches("/logout")) {
+            req.getRequestDispatcher("/DivideServlet?action=logout").forward(request, response);
+            return;
+        }
+        
+        chain.doFilter(request, response);
+
     }
 
     /**
