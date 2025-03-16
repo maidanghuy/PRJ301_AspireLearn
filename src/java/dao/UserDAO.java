@@ -29,7 +29,7 @@ public class UserDAO {
         }
     }
 
-    // Get User Form DB with username and password
+    // Get User from DB with username and password
     public User getUser(String username, String password) {
         User user = null;
         String query = "SELECT * FROM Users WHERE username = ? AND password = ?";
@@ -48,12 +48,14 @@ public class UserDAO {
                         rs.getString("password"),
                         rs.getString("email"),
                         rs.getDate("dateOfBirth"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getDate("createdAt"), // Lấy thêm createdAt
+                        rs.getDate("updatedAt") // Lấy thêm updatedAt
                 );
             }
+            conn.close();
             rs.close();
             stmt.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +104,7 @@ public class UserDAO {
         }
         return false;
     }
-    
+
     // Register for User and insert to DB 
     public boolean registerUser(User user) {
         String sql = "INSERT INTO Users (role, username, password, email, dateOfBirth, status, createdAt, updatedAt) "
@@ -136,44 +138,31 @@ public class UserDAO {
             return false;
         }
     }
-    
+
     // Get User from DB by Email
     public User getUserByEmail(String email) {
         User user = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
+        String query = "SELECT * FROM Users WHERE email = ?";
 
-        try {
-            String sql = "SELECT * FROM Users WHERE email = ?";
-            pstmt = conn.prepareStatement(sql);
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, email);
-            rs = pstmt.executeQuery();
-
-//            int userID, String role, String username, String password, String email, Date dateOfBirth, String status
-            if (rs.next()) {
-                user = new User(
-                        rs.getInt("userID"),
-                        null,
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("email"),
-                        rs.getDate("dateOfBirth"),
-                        null
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    user = new User(
+                            rs.getInt("userID"),
+                            rs.getString("role"), // Lấy role
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("email"),
+                            rs.getDate("dateOfBirth"),
+                            rs.getString("status"), // Lấy status
+                            rs.getDate("createdAt"), // Lấy createdAt
+                            rs.getDate("updatedAt") // Lấy updatedAt
+                    );
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return user;
     }

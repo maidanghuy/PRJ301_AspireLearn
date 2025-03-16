@@ -1,0 +1,183 @@
+.account {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.account-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 480px;
+}
+
+/* Header Styles */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #FB9400;
+    padding: 3px;
+    object-fit: cover;
+    background: white;
+}
+
+.avatar-badge {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2ecc71;
+    border: 3px solid white;
+}
+
+.user-name {
+    margin-top: 15px;
+}
+
+.user-name h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.user-status {
+    color: #FB9400;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Info Group Styles */
+.info-group {
+    margin: 25px 0;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item i {
+    color: #FB9400;
+    font-size: 20px;
+    width: 30px;
+}
+
+.info-content {
+    margin-left: 15px;
+}
+
+.info-content label {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.info-content p {
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+}
+
+/* Stats Section */
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    background: #f8f9fa;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FB9400;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Action Buttons */
+.account-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.btn-edit,
+.btn-settings {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #FB9400;
+    color: white;
+}
+
+.btn-settings {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.btn-edit:hover,
+.btn-settings:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit i,
+.btn-settings i {
+    margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .account-card {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .user-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .account-actions {
+        flex-direction: column;
+    }
+}
