@@ -5,7 +5,7 @@
 --%>
 
 
-<%@page contentType="text/html" import="model.*,java.util.*, db.*, controller.*, constant.*, util.*" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" import="constant.GoogleInfo" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../includes/path-config.jsp" %>
 <!DOCTYPE html>
