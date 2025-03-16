@@ -30,10 +30,10 @@ public class DivideServlet extends HttpServlet {
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,10 +57,10 @@ public class DivideServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -89,6 +89,10 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/auth/register.jsp").forward(request, response);
                 break;
             }
+            case "editaccount" -> {
+                request.getRequestDispatcher("views/auth/editAccount.jsp").forward(request, response);
+                break;
+            }
             case "viewhome" -> {
                 request.getRequestDispatcher("views/home.jsp").forward(request, response);
                 break;
@@ -103,11 +107,11 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewaccount" -> {
-                
+
                 CourseDAO cdao = new CourseDAO();
-                
+
                 HttpSession session = request.getSession();
-                User user = (User)session.getAttribute("user");
+                User user = (User) session.getAttribute("user");
                 ArrayList<Course> listCourseOrder = cdao.getUserCourses(user.getUserID());
                 request.setAttribute("listCourseOrder", listCourseOrder);
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
@@ -140,10 +144,10 @@ public class DivideServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request  servlet request
+     * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException      if an I/O error occurs
+     * @throws IOException if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -159,7 +163,7 @@ public class DivideServlet extends HttpServlet {
                 getUserForRegister(request, response);
             }
             case "editAccount" -> {
-                // editAccount(request, response);
+                editAccount(request, response);
                 // processRequest(request, response);
             }
             case "updateCustomer" -> {
@@ -284,8 +288,86 @@ public class DivideServlet extends HttpServlet {
             request.getSession().setAttribute("email", request.getParameter("email"));
             request.getSession().setAttribute("dateOfBirth", request.getParameter("dateOfBirth"));
             response.sendRedirect("auth/register");
-            ;
         }
+    }
+
+    public void editAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        // Nhận dữ liệu từ form
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String currentPassword = request.getParameter("currentPassword");
+        String newPassword = request.getParameter("newPassword");
+        String confirmPassword = request.getParameter("confirmPassword");
+        String dateOfBirthStr = request.getParameter("dateOfBirth");
+
+        // Kiểm tra email đã tồn tại chưa
+        UserDAO userDAO = new UserDAO();
+        userDAO = new UserDAO();
+        if (userDAO.isEmailExists(email, user.getUserID())) {
+            request.getSession().setAttribute("error", "Email đã được sử dụng! Vui lòng chọn email khác.");
+            response.sendRedirect("edit/account");
+            return;
+        }else {
+            user.setEmail(email);
+        }
+
+        // Kiểm tra ngày sinh
+        userDAO = new UserDAO();
+        Date dateOfBirth = null;
+        if (dateOfBirthStr != null && !dateOfBirthStr.isEmpty()) {
+            dateOfBirth = Date.valueOf(dateOfBirthStr);
+
+            // Lấy ngày hiện tại
+            LocalDate today = LocalDate.now();
+            if (dateOfBirth.toLocalDate().isAfter(today)) {
+                request.getSession().setAttribute("error", "Ngày sinh không hợp lệ! Phải nhỏ hơn ngày hiện tại.");
+                response.sendRedirect("edit/account");
+                return;
+            }
+            user.setDateOfBirth(dateOfBirth);
+        }
+        
+        // Kiểm tra mật khẩu cũ đúng không
+        if (currentPassword != null && !currentPassword.isEmpty()) {
+            if (!user.getPassword().equals(currentPassword)) {
+                request.getSession().setAttribute("error", "Mật khẩu hiện tại chưa chính xác!");
+                response.sendRedirect("edit/account");
+                return;
+            }
+        }
+        
+        // Kiểm tra mật khẩu mới có khớp không
+        if (newPassword != null && !newPassword.isEmpty()) {
+            if (!newPassword.equals(confirmPassword)) {
+                request.getSession().setAttribute("error", "Mật khẩu mới với mật khẩu xác nhận không khớp nhau");
+                response.sendRedirect("edit/account");
+                return;
+            }
+            user.setPassword(newPassword);
+        }
+        
+        user.setUsername(username);
+        userDAO = new UserDAO();
+        boolean success = userDAO.editUser(user);
+
+        if (success) {
+            userDAO = new UserDAO();
+            User updatedUser = userDAO.getUser(username, newPassword);
+            session.setAttribute("user", updatedUser);
+            request.getSession().setAttribute("message", "Account updated successfully!");
+        } else {
+            request.getSession().setAttribute("error", "Failed to update account.");
+        }
+        response.sendRedirect("edit/account");
     }
 
     /**

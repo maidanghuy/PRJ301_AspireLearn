@@ -101,7 +101,7 @@
 
                             <!-- Action Buttons -->
                             <div class="account-actions">
-                                <a href="${contextPath}/editAccount" class="btn-edit">
+                                <a href="${contextPath}/edit/account" class="btn-edit">
                                     <i class="fas fa-edit"></i>
                                     Edit Profile
                                 </a>
