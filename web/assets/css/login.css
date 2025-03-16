@@ -1,0 +1,197 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 16, 2025, 10:50:40 AM
+    Author     : macbookpro
+*/
+
+body {
+    background-color: #f0f2f5;
+    /* Màu nền nhẹ nhàng */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin: 0;
+}
+
+.form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+}
+
+.auth {
+    background-color: white;
+    border-radius: 3.8rem;
+    padding: 2.4rem;
+}
+
+.auth__header {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 1.4rem;
+}
+
+.auth__header-img {
+    position: absolute;
+    width: 106%;
+    height: 100%;
+    top: -20px;
+    right: 49%;
+    transform: translateX(50%);
+}
+
+.auth__header-img img {
+    max-width: 100%;
+    /*margin-bottom: 20px;*/
+}
+
+.auth__header-content {
+    position: absolute;
+    width: 50%;
+    left: 45%;
+    bottom: 55%;
+    transform: translateY(50%);
+    color: white;
+}
+
+.auth__header-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.auth__header-title--highlight {
+    color: #fff;
+    /* Màu nổi bật mới */
+}
+
+.auth__header-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.auth__body {}
+
+.auth__input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.auth__input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.auth__eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.auth__forgot-password {
+    font-size: 12px;
+    color: #FB9400;
+    /* Màu mới */
+    text-decoration: none;
+}
+
+.auth__button-group {
+    margin-top: 20px;
+}
+
+.auth__button--login {
+    width: 100%;
+    padding: 10px;
+    background-color: #FB9400;
+    /* Màu nền nút mới */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth__button--login:hover {
+    background-color: #e07b00;
+    /* Màu khi hover */
+}
+
+.auth__button--register {}
+
+.auth__footer {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.auth__footer-text {
+    font-size: 14px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.auth__footer-link {
+    color: #FB9400;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+.append {
+    display: inline-block;
+}
+
+.dividerTB {
+    background-color: #9E988F;
+    margin: 1.8rem 0;
+    height: 1.3px;
+    border-radius: 9999px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.9px) {
+    .form {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 440px) {
+    .auth__header{
+        height: 100px;
+    }
+    
+    .auth__header-title{
+        font-size: 1.6rem;
+    }
+    
+    .auth__header-subtitle{
+        font-size: 0.8rem;
+    }
+}
+@media (max-width: 340px){
+    .auth__header{
+        height: 70px;
+    }
+}
