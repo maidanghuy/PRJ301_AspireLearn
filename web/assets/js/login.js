@@ -4,25 +4,27 @@
  */
 
 
-// JS for hidden append password buttons
 const togglePassword = document.getElementById('toggle-password');
-const passwordField = document.getElementById('password');
 const passwordIcon = togglePassword.querySelector('i');
+const passwordField = document.getElementById('password');
+const confirmPasswordField = document.getElementById('confirmPassword');
+
+//console.log(confirmPasswordField + " " + passwordField);
+function toggleVisibility(field, icon) {
+  if (!field || !field.value) return; // Kiểm tra nếu ô nhập trống hoặc không tồn tại thì không làm gì cả
+
+  const type = field.getAttribute('type') === 'password' ? 'text' : 'password';
+  field.setAttribute('type', type);
+  icon.classList.toggle('fa-eye-slash');
+  icon.classList.toggle('fa-eye');
+}
 
 togglePassword.addEventListener('click', function () {
-  // Toggle the type attribute
-  const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
-  passwordField.setAttribute('type', type);
-
-  // Toggle the eye icon based on the password visibility
-  passwordIcon.classList.toggle('fa-eye-slash');
-  passwordIcon.classList.toggle('fa-eye');
+  toggleVisibility(passwordField, passwordIcon);
+  if (confirmPasswordField) {
+      const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      confirmPasswordField.setAttribute('type', type);
+}
 });
 
-passwordField.addEventListener("focus", () => {
-  document.querySelector("#toggle-password i").style.color = "black"; // Màu khi focus
-});
 
-passwordField.addEventListener("blur", () => {
-  document.querySelector("#toggle-password i").style.color = "#9E988F"; // Màu khi mất focus
-});
