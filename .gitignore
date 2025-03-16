@@ -41,3 +41,6 @@ Thumbs.db
 # Bỏ qua file cấu hình hệ điều hành
 *.swp
 *.swo
+
+# Bỏ qua file chứa Key API
+src/java/constant/IGoogleInfo.java

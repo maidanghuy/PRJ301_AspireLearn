@@ -142,6 +142,13 @@ public class URLRewriteFilter implements Filter {
 
         
         //Auth
+        
+        // -> Login gg
+        if (path.matches("/auth/login") && request.getParameter("code") != null) {
+            req.getRequestDispatcher("/DivideServlet?action=logingoogle").forward(request, response);
+            return;
+        }
+        
         // -> Login
         if (path.matches("/auth/login")) {
             req.getRequestDispatcher("/DivideServlet?action=login").forward(request, response);

@@ -10,6 +10,7 @@ package model;
  */
 import java.security.SecureRandom;
 import java.sql.Date;
+import util.PasswordGenerator;
 
 public class User {
 
@@ -50,15 +51,15 @@ public class User {
         this.updatedAt = new Date(System.currentTimeMillis());
     }
 
-//    public User(GoogleAccount googleAccount) {
-//        this.username = googleAccount.getEmail();
-//        this.email = googleAccount.getEmail();
-//        this.role = "Student";
-//        this.status = googleAccount.isVerified_email() ? "Active" : "Inactive";
-//        this.password = generateRandomPassword();
-//        this.createdAt = new Date(System.currentTimeMillis());
-//        this.updatedAt = new Date(System.currentTimeMillis());
-//    }
+    public User(Google googleAccount) {
+        this.username = googleAccount.getEmail();
+        this.email = googleAccount.getEmail();
+        this.role = "Student";
+        this.status = googleAccount.isVerified_email() ? "Active" : "Inactive";
+        this.password = PasswordGenerator.generateSecureRandomPassword(12);
+        this.createdAt = new Date(System.currentTimeMillis());
+        this.updatedAt = new Date(System.currentTimeMillis());
+    }
 
     // Getters and Setters
     public int getUserID() {

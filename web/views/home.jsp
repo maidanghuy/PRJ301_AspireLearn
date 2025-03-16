@@ -1,6 +1,6 @@
 <%-- Document : home Created on : Mar 13, 2025, 5:30:19 PM Author : macbookpro --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" import="model.*,java.util.*, db.*, controller.*, constant.*, util.*" pageEncoding="UTF-8" %>
 <%@ include file="./includes/path-config.jsp" %>
 <!DOCTYPE html>
 <html>

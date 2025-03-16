@@ -70,6 +70,11 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/auth/login.jsp").forward(request, response);
                 break;
             }
+            case "logingoogle" -> {
+                request.getRequestDispatcher("LoginGoogleServlet").forward(request, response);
+//                processRequest(request, response);
+                break;
+            }
             case "logout" -> {
                 resetInfo(request, response);
                 request.getSession(true).setAttribute("logoutMessage", "Bạn đã đăng xuất thành công!");

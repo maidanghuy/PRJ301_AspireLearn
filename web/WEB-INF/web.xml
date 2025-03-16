@@ -12,11 +12,18 @@
         <servlet-name>DivideServlet</servlet-name>
         <servlet-class>controller.DivideServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>controller.LoginGoogleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/LoginGoogleServlet</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>views/home.jsp</welcome-file>
     </welcome-file-list>
