@@ -17,6 +17,8 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
+import util.CheckRole;
 
 /**
  *
@@ -186,7 +188,8 @@ public class URLRewriteFilter implements Filter {
                     return;
                 }
             }
-
+            
+            session.setAttribute("option", action);
             req.getRequestDispatcher("/DivideServlet?action=view" + action).forward(request, response);
             return;
         }
@@ -194,6 +197,39 @@ public class URLRewriteFilter implements Filter {
         // Logout
         if (path.matches("/logout")) {
             req.getRequestDispatcher("/DivideServlet?action=logout").forward(request, response);
+            return;
+        }
+
+        // Admin
+        if (path.matches("/dashboard")) {
+            String action = "dashboard";
+            session.setAttribute("option", action);
+            req.getRequestDispatcher("views/admin/dashboard.jsp").forward(request, response);
+            return;
+        }
+
+        if (path.startsWith("/dashboard/")) {
+
+            int check = CheckRole.checkRole(req, resp);
+            if (check == -1){
+                String newPath = req.getContextPath() + "/auth/login";
+                resp.sendRedirect(newPath);
+                return;
+            }else if (check == 1){
+                String newPath = req.getContextPath() + "/view/home";
+                resp.sendRedirect(newPath);
+            }
+
+            // Nếu là admin, tiếp tục xử lý
+            String action = path.substring(11); // Remove "/dashboard/" prefix
+            // Kiểm tra xem action có hợp lệ không
+            if (!action.matches("users|courses|materials|tests|settings")) {
+                action = "users"; // Mặc định là "users" nếu không hợp lệ
+            }
+            
+            session.setAttribute("option", action);
+
+            req.getRequestDispatcher("/DivideServlet?action=admin" + action).forward(request, response);
             return;
         }
 

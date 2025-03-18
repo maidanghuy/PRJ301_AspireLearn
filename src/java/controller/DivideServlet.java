@@ -117,6 +117,14 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
             }
+            case "adminusers" -> {
+//                UserDAO udao = new UserDAO();
+//                ArrayList<User> users = udao.getAllUsers();
+//                HttpSession session = request.getSession();
+//                session.setAttribute("users", users);
+                request.getRequestDispatcher("/dashboard/users").forward(request, response);
+                break;
+            }
             default -> {
                 request.getRequestDispatcher("views/home.jsp").forward(request, response);
                 break;
@@ -166,7 +174,8 @@ public class DivideServlet extends HttpServlet {
                 editAccount(request, response);
                 // processRequest(request, response);
             }
-            case "updateCustomer" -> {
+            case "banAccount" -> {
+                banAccount(request, response);
             }
             case "createCustomer" -> {
             }
@@ -188,16 +197,17 @@ public class DivideServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            // Tạo cookie lưu trong 3 tháng
-            // Cookie userCookie = new Cookie("username", username);
-            // userCookie.setMaxAge(60 * 60 * 24 * 90); // 90 ngày
-            // response.addCookie(userCookie);
-            // Chuyển hướng đến trang chính
-            response.sendRedirect("view/home");
+            // Kiểm tra role của user
+            if ("Admin".equals(user.getRole())) {
+                response.sendRedirect("dashboard"); // Chuyển hướng đến dashboard nếu là giáo viên
+            } else {
+                response.sendRedirect("view/home"); // Chuyển hướng đến trang chính nếu không phải giáo viên
+            }
         } else {
             request.getSession().setAttribute("error", "Sai tài khoản hoặc mật khẩu!");
             response.sendRedirect("auth/login");
         }
+
     }
 
     public void getUserForRegister(HttpServletRequest request, HttpServletResponse response)
@@ -293,6 +303,20 @@ public class DivideServlet extends HttpServlet {
 
     public void editAccount(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String formType = request.getParameter("formType");
+
+        if (formType.equals("userUpdate")) {
+            userEdit(request, response);
+        } else if (formType.equals("adminUpdate")) {
+            adminEdit(request, response);
+//            System.out.println("test");
+        } else {
+            response.sendRedirect("/view/home");
+        }
+    }
+
+    public void userEdit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
@@ -300,7 +324,6 @@ public class DivideServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
             return;
         }
-
         // Nhận dữ liệu từ form
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -309,14 +332,23 @@ public class DivideServlet extends HttpServlet {
         String confirmPassword = request.getParameter("confirmPassword");
         String dateOfBirthStr = request.getParameter("dateOfBirth");
 
-        // Kiểm tra email đã tồn tại chưa
+        // Kiểm tra username đã tồn tại chưa
         UserDAO userDAO = new UserDAO();
+        if (userDAO.isEmailExists(username, user.getUserID())) {
+            request.getSession().setAttribute("error", " đã được sử dụng! Vui lòng chọn username khác.");
+            response.sendRedirect("edit/account");
+            return;
+        } else {
+            user.setUsername(username);
+        }
+
+        // Kiểm tra email đã tồn tại chưa
         userDAO = new UserDAO();
         if (userDAO.isEmailExists(email, user.getUserID())) {
             request.getSession().setAttribute("error", "Email đã được sử dụng! Vui lòng chọn email khác.");
             response.sendRedirect("edit/account");
             return;
-        }else {
+        } else {
             user.setEmail(email);
         }
 
@@ -335,7 +367,7 @@ public class DivideServlet extends HttpServlet {
             }
             user.setDateOfBirth(dateOfBirth);
         }
-        
+
         // Kiểm tra mật khẩu cũ đúng không
         if (currentPassword != null && !currentPassword.isEmpty()) {
             if (!user.getPassword().equals(currentPassword)) {
@@ -344,7 +376,7 @@ public class DivideServlet extends HttpServlet {
                 return;
             }
         }
-        
+
         // Kiểm tra mật khẩu mới có khớp không
         if (newPassword != null && !newPassword.isEmpty()) {
             if (!newPassword.equals(confirmPassword)) {
@@ -354,8 +386,7 @@ public class DivideServlet extends HttpServlet {
             }
             user.setPassword(newPassword);
         }
-        
-        user.setUsername(username);
+
         userDAO = new UserDAO();
         boolean success = userDAO.editUser(user);
 
@@ -368,6 +399,97 @@ public class DivideServlet extends HttpServlet {
             request.getSession().setAttribute("error", "Failed to update account.");
         }
         response.sendRedirect("edit/account");
+
+    }
+
+    public void adminEdit(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        User user1 = (User) session.getAttribute("user");
+
+        if (user1 == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        User user = new User();
+        // Nhận dữ liệu từ form
+        int userID = Integer.parseInt(request.getParameter("id"));
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        String status = request.getParameter("status");
+
+        // Kiểm tra username đã tồn tạic chưa
+        UserDAO userDAO = new UserDAO();
+        if (userDAO.isEmailExists(username, userID)) {
+            request.getSession().setAttribute("error", " đã được sử dụng! Vui lòng chọn username khác.");
+
+            response.sendRedirect("dashboard/users");
+            return;
+        } else {
+            user.setUsername(username);
+        }
+
+        // Kiểm tra email đã tồn tại chưa
+        userDAO = new UserDAO();
+        if (userDAO.isEmailExists(email, userID)) {
+            request.getSession().setAttribute("error", "Email đã được sử dụng! Vui lòng chọn email khác.");
+            response.sendRedirect("dashboard/users");
+            return;
+        } else {
+            user.setEmail(email);
+        }
+
+        user.setUserID(userID);
+        user.setPassword(password);
+        user.setRole(role);
+        user.setStatus(status);
+
+        userDAO = new UserDAO();
+        boolean success = userDAO.editUserForAdmin(user);
+
+        if (success) {
+
+            request.getSession().setAttribute("message", "Account with ID " + userID + " updated successfully!");
+        } else {
+            request.getSession().setAttribute("error", "Failed to update account " + userID + ".");
+        }
+
+        response.sendRedirect("dashboard/users");
+
+    }
+
+    public void banAccount(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        User admin = (User) session.getAttribute("user");
+
+        // Kiểm tra quyền admin trước khi cấm tài khoản
+        if (admin == null || !"Admin".equals(admin.getRole())) {
+            session.setAttribute("error", "Bạn không có quyền thực hiện thao tác này!");
+            response.sendRedirect("dashboard/users");
+            return;
+        }
+
+        try {
+            int userID = Integer.parseInt(request.getParameter("id"));
+
+            UserDAO userDAO = new UserDAO();
+            boolean isBanned = userDAO.banUser(userID);
+            if (isBanned) {
+                session.setAttribute("message", "Account with ID " + userID +  " is banned!");
+            } else {
+                session.setAttribute("error", "Không thể cấm tài khoản. Vui lòng thử lại!");
+            }
+        } catch (NumberFormatException e) {
+            session.setAttribute("error", "ID tài khoản không hợp lệ!");
+        }
+
+        response.sendRedirect("dashboard/users");
+
     }
 
     /**

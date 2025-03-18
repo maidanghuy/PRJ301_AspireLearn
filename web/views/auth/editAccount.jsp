@@ -35,6 +35,7 @@
 
                             <form action="${url}/DivideServlet" method="POST" class="edit-form">
                                 <input type="text" id="formName" name="formName" value="editAccount" hidden>
+                                <input type="text" id="formType" name="formType" value="userUpdate" hidden>
                                 <!-- Avatar Section -->
                                 <div class="avatar-section">
                                     <div class="current-avatar">

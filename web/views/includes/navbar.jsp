@@ -19,24 +19,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </a>
     <nav class="sidebar__nav">
-        <a href="${url}/view/home" class="sidebar__item sidebar__item--active">
+        <a href="${url}/view/home" class="sidebar__item ${'home'.equals(option) ? 'sidebar__item--active':''}">
             <img class="sidebar__icon" src="${img}/navbar_icon/Icon.svg" alt="Home" />
             <span class="sidebar__link sidebar__text">Home</span>
         </a>
-        <a href="${url}/view/material" class="sidebar__item">
+        <a href="${url}/view/material" class="sidebar__item ${'material'.equals(option) ? 'sidebar__item--active':''}">
             <img class="sidebar__icon" src="${img}/navbar_icon/Book.svg" alt="Document" />
             <span class="sidebar__link sidebar__text">Material</span>
         </a>
-        <a href="${url}/view/course" class="sidebar__item">
+        <a href="${url}/view/course" class="sidebar__item ${'course'.equals(option) ? 'sidebar__item--active':''}">
             <img class="sidebar__icon" src="${img}/navbar_icon/Leaf.svg" alt="Course-Online" />
             <span class="sidebar__link sidebar__text">Course</span>
         </a>
-        <a href="${url}/view/test" class="sidebar__item">
+        <a href="${url}/view/test" class="sidebar__item ${'test'.equals(option) ? 'sidebar__item--active':''}">
             <img class="sidebar__icon" src="${img}/navbar_icon/News.svg" alt="Testing" />
             <span class="sidebar__link sidebar__text">Test</span>
         </a>
         <c:if test="${not empty sessionScope.user}">
-            <a href="${url}/view/account" class="sidebar__item">
+            <a href="${url}/view/account" class="sidebar__item ${'account'.equals(option) ? 'sidebar__item--active':''}">
                 <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
                 <span class="sidebar__link sidebar__text">Account</span>
             </a>
@@ -50,24 +50,24 @@
         <img src="${img}/navbar_icon/Logo.svg" alt="G-easy Learning" id="sidebar__logo-image" class="sidebar__logo-image" />
     </a>
     <nav class="sidebar__nav">
-        <a href="${url}/view/home" class="sidebar__item sidebar__item--active">
+        <a href="${url}/view/home" class="sidebar__item ${'home'.equals(option) ? 'sidebar__item--active':''}"">
             <img class="sidebar__icon" src="${img}/navbar_icon/Icon.svg" alt="Home" />
             <span class="sidebar__link sidebar__text">Home</span>
         </a>
-        <a href="${url}/view/material" class="sidebar__item">
+        <a href="${url}/view/material" class="sidebar__item ${'meterial'.equals(option) ? 'sidebar__item--active':''}"">
             <img class="sidebar__icon" src="${img}/navbar_icon/Book.svg" alt="Document" />
             <span class="sidebar__link sidebar__text">Material</span>
         </a>
-        <a href="${url}/view/course" class="sidebar__item">
+        <a href="${url}/view/course" class="sidebar__item ${'course'.equals(option) ? 'sidebar__item--active':''}"">
             <img class="sidebar__icon" src="${img}/navbar_icon/Leaf.svg" alt="Course-Online" />
             <span class="sidebar__link sidebar__text">Course</span>
         </a>
-        <a href="${url}/view/test" class="sidebar__item">
+        <a href="${url}/view/test" class="sidebar__item ${'test'.equals(option) ? 'sidebar__item--active':''}"">
             <img class="sidebar__icon" src="${img}/navbar_icon/News.svg" alt="Testing" />
             <span class="sidebar__link sidebar__text">Test</span>
         </a>
         <c:if test="${not empty sessionScope.user}">
-            <a href="${url}/view/account" class="sidebar__item">
+            <a href="${url}/view/account" class="sidebar__item ${'account'.equals(option) ? 'sidebar__item--active':''}"">
                 <img class="sidebar__icon" src="${img}/navbar_icon/User.svg" alt="User-Information" />
                 <span class="sidebar__link sidebar__text">Account</span>
             </a>
