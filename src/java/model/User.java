@@ -8,7 +8,6 @@ package model;
  *
  * @author macbookpro
  */
-import java.security.SecureRandom;
 import java.sql.Date;
 import util.PasswordGenerator;
 

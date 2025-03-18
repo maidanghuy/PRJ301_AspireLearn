@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.User;
 
 /**
@@ -166,7 +167,7 @@ public class UserDAO {
         }
         return user;
     }
-    
+
     // Edit user from From edit
     public boolean editUser(User user) {
         PreparedStatement pstmt = null;
@@ -200,8 +201,230 @@ public class UserDAO {
         }
     }
 
+    public ArrayList<User> getAllUsers() {
+        ArrayList<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM Users";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("userID"),
+                        rs.getString("role"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getDate("dateOfBirth"),
+                        rs.getString("status"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt")
+                );
+                userList.add(user);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
+    public ArrayList<User> getUsers(int offset, int limit, String search, String roleFilter, String statusFilter) {
+        ArrayList<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users WHERE 1=1";
+
+        if (search != null && !search.trim().isEmpty()) {
+            sql += " AND (username LIKE ? OR email LIKE ?)";
+        }
+        if (roleFilter != null && !roleFilter.trim().isEmpty()) {
+            sql += " AND role = ?";
+        }
+        if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+            sql += " AND status = ?";
+        }
+
+        sql += " ORDER BY userID ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            int paramIndex = 1;
+
+            if (search != null && !search.trim().isEmpty()) {
+                String searchPattern = "%" + search.trim() + "%";
+                stmt.setString(paramIndex++, searchPattern);
+                stmt.setString(paramIndex++, searchPattern);
+            }
+            if (roleFilter != null && !roleFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, roleFilter);
+            }
+            if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, statusFilter);
+            }
+
+            stmt.setInt(paramIndex++, offset);
+            stmt.setInt(paramIndex++, limit);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    users.add(new User(
+                            rs.getInt("userID"),
+                            rs.getString("role"),
+                            rs.getString("username"),
+                            rs.getString("password"),
+                            rs.getString("email"),
+                            rs.getDate("dateOfBirth"),
+                            rs.getString("status"),
+                            rs.getDate("createdAt"),
+                            rs.getDate("updatedAt")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    public int getTotalUsers(String search, String roleFilter, String statusFilter) {
+        String sql = "SELECT COUNT(*) FROM users WHERE 1=1";
+
+        if (search != null && !search.trim().isEmpty()) {
+            sql += " AND (username LIKE ? OR email LIKE ?)";
+        }
+        if (roleFilter != null && !roleFilter.trim().isEmpty()) {
+            sql += " AND role = ?";
+        }
+        if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+            sql += " AND status = ?";
+        }
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            int paramIndex = 1;
+
+            if (search != null && !search.trim().isEmpty()) {
+                String searchPattern = "%" + search.trim() + "%";
+                stmt.setString(paramIndex++, searchPattern);
+                stmt.setString(paramIndex++, searchPattern);
+            }
+            if (roleFilter != null && !roleFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, roleFilter);
+            }
+            if (statusFilter != null && !statusFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, statusFilter);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public boolean editUserForAdmin(User user) {
+        PreparedStatement pstmt = null;
+
+        try {
+            String sql = "UPDATE Users SET updatedAt = GETDATE()";
+            int index = 1;
+
+            if (user.getUsername() != null && !user.getUsername().trim().isEmpty()) {
+                sql += ", username = ?";
+            }
+            if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
+                sql += ", email = ?";
+            }
+            if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
+                sql += ", password = ?";
+            }
+            if (user.getRole() != null && !user.getRole().trim().isEmpty()) {
+                sql += ", role = ?";
+            }
+            if (user.getStatus() != null && !user.getStatus().trim().isEmpty()) {
+                sql += ", status = ?";
+            }
+
+            sql += " WHERE userID = ?";
+
+            pstmt = conn.prepareStatement(sql);
+
+            if (user.getUsername() != null && !user.getUsername().trim().isEmpty()) {
+                pstmt.setString(index++, user.getUsername());
+            }
+            if (user.getEmail() != null && !user.getEmail().trim().isEmpty()) {
+                pstmt.setString(index++, user.getEmail());
+            }
+            if (user.getPassword() != null && !user.getPassword().trim().isEmpty()) {
+                pstmt.setString(index++, user.getPassword());
+            }
+            if (user.getRole() != null && !user.getRole().trim().isEmpty()) {
+                pstmt.setString(index++, user.getRole());
+            }
+            if (user.getStatus() != null && !user.getStatus().trim().isEmpty()) {
+                pstmt.setString(index++, user.getStatus());
+            }
+
+            pstmt.setInt(index, user.getUserID());
+
+            int rowsUpdated = pstmt.executeUpdate();
+
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean banUser(int userID) {
+        PreparedStatement pstmt = null;
+
+        try {
+            String sql = "UPDATE Users SET status = 'Banned', updatedAt = GETDATE() WHERE userID = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, userID);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
-        System.out.println(udao.getUser("huy", "1233"));
+//        System.out.println(udao.getUser("huy", "1233"));
+//        System.out.println(udao.getTotalUsers(null));
+        ArrayList<User> users = udao.getUsers(0, 15, null, null, null);
+        System.out.println("Danh sách người dùng:");
+        for (User u : users) {
+            System.out.println(u);
+        }
     }
 }
