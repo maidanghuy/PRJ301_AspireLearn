@@ -305,13 +305,14 @@ public class DivideServlet extends HttpServlet {
             throws ServletException, IOException {
         String formType = request.getParameter("formType");
 
-        if (formType.equals("userUpdate")) {
-            userEdit(request, response);
-        } else if (formType.equals("adminUpdate")) {
-            adminEdit(request, response);
+        switch (formType) {
+            case "userUpdate" ->
+                userEdit(request, response);
+            case "adminUpdate" ->
+                adminEdit(request, response);
 //            System.out.println("test");
-        } else {
-            response.sendRedirect("/view/home");
+            default ->
+                response.sendRedirect("/view/home");
         }
     }
 
@@ -409,7 +410,7 @@ public class DivideServlet extends HttpServlet {
         User user1 = (User) session.getAttribute("user");
 
         if (user1 == null) {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect(request.getContextPath() + "/auth/login");
             return;
         }
 
@@ -458,6 +459,7 @@ public class DivideServlet extends HttpServlet {
             request.getSession().setAttribute("error", "Failed to update account " + userID + ".");
         }
 
+        // Chuyển hướng về trang dashboard/users
         response.sendRedirect("dashboard/users");
 
     }
@@ -480,7 +482,7 @@ public class DivideServlet extends HttpServlet {
             UserDAO userDAO = new UserDAO();
             boolean isBanned = userDAO.banUser(userID);
             if (isBanned) {
-                session.setAttribute("message", "Account with ID " + userID +  " is banned!");
+                session.setAttribute("message", "Account with ID " + userID + " is banned!");
             } else {
                 session.setAttribute("error", "Không thể cấm tài khoản. Vui lòng thử lại!");
             }

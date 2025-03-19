@@ -23,11 +23,11 @@
                     <div class="nav-left">
                         <h2>Users Management</h2>
                     </div>
-                    <div class="nav-right">
-                        <button class="btn btn-primary" onclick="openAddUserModal()">
-                            <i class="fas fa-plus"></i> Add New User
-                        </button>
-                    </div>
+                    <!--                                <div class="nav-right">
+                                                        <button class="btn btn-primary" onclick="openAddUserModal()">
+                                                            <i class="fas fa-plus"></i> Add New User
+                                                        </button>
+                                                    </div>-->
                 </div>
 
                 <!-- Search and Filter Section -->
@@ -39,15 +39,20 @@
                     <div class="filter-box">
                         <select id="roleFilter" onchange="updateFilter('roleFilter', this.value)">
                             <option value="">All Roles</option>
-                            <option value="Student" ${roleFilter=='Student' ? 'selected' : '' }>Student</option>
-                            <option value="Teacher" ${roleFilter=='Teacher' ? 'selected' : '' }>Teacher</option>
+                            <option value="Student" ${roleFilter=='Student' ? 'selected' : '' }>Student
+                            </option>
+                            <option value="Teacher" ${roleFilter=='Teacher' ? 'selected' : '' }>Teacher
+                            </option>
                             <option value="Admin" ${roleFilter=='Admin' ? 'selected' : '' }>Admin</option>
                         </select>
                         <select id="statusFilter" onchange="updateFilter('statusFilter', this.value)">
                             <option value="">All Status</option>
-                            <option value="Active" ${statusFilter=='Active' ? 'selected' : '' }>Active</option>
-                            <option value="Inactive" ${statusFilter=='Inactive' ? 'selected' : '' }>Inactive</option>
-                            <option value="Banned" ${statusFilter=='Banned' ? 'selected' : '' }>Banned</option>
+                            <option value="Active" ${statusFilter=='Active' ? 'selected' : '' }>Active
+                            </option>
+                            <option value="Inactive" ${statusFilter=='Inactive' ? 'selected' : '' }>Inactive
+                            </option>
+                            <option value="Banned" ${statusFilter=='Banned' ? 'selected' : '' }>Banned
+                            </option>
                         </select>
                         <select id="pageSize" onchange="changePageSize(this.value)">
                             <option value="5" ${pageSize==5 ? 'selected' : '' }>5 per page</option>
@@ -60,12 +65,12 @@
                 <!-- Users Table -->
                 <c:if test="${not empty sessionScope.error}">
                     <div class="alert alert-danger text-center">${sessionScope.error}</div>
-                    <c:remove var="error" scope="session"/>
+                    <c:remove var="error" scope="session" />
                 </c:if>
 
                 <c:if test="${not empty sessionScope.message}">
                     <div class="alert alert-success text-center">${sessionScope.message}</div>
-                    <c:remove var="message" scope="session"/>
+                    <c:remove var="message" scope="session" />
                 </c:if>
                 <div class="table-container">
                     <table class="users-table">
@@ -165,16 +170,16 @@
                     <input type="text" id="formType" name="formType" value="adminUpdate" hidden>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password">
-                        <small>Leave blank to keep current password when editing</small>
+                        <small id="infomation" >Leave blank to keep current password when editing</small>
                     </div>
                     <div class="form-group">
                         <label for="role">Role</label>
@@ -210,12 +215,89 @@
                         <input type="text" id="userIdForDelete" name="id" hidden>
                         <input type="text" id="formName" name="formName" value="banAccount" hidden>
                         <button type="submit" onclick="deleteUser()" class="btn btn-danger">Ban</button>
-                        <button type="button" onclick="closeDeleteModal()" class="btn btn-secondary">Cancel</button>
+                        <button type="button" onclick="closeDeleteModal()"
+                                class="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>
         </div>
 
+        <!-- View User Modal -->
+        <div id="viewUserModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeViewModal()">&times;</span>
+                <h2>User Details</h2>
+                <div class="user-detail-container">
+                    <div class="user-profile-header">
+                        <div class="user-avatar-large">
+                            <img id="viewUserAvatar" src="${img}/avatar.png" alt="User Avatar">
+                        </div>
+                        <div class="user-header-info">
+                            <h3 id="viewUserName"></h3>
+                            <div class="badge-container">
+                                <span id="viewUserRole" class="badge"></span>
+                                <span id="viewUserStatus" class="status-badge"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-info-sections">
+                        <div class="info-section">
+                            <h4>Account Information</h4>
+                            <div class="info-row">
+                                <div class="info-label">User ID:</div>
+                                <div id="viewUserId" class="info-value"></div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Email:</div>
+                                <div id="viewUserEmail" class="info-value"></div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Created:</div>
+                                <div id="viewUserCreated" class="info-value"></div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Last Login:</div>
+                                <div id="viewUserLastLogin" class="info-value">NULL</div>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Personal Information</h4>
+                            <div class="info-row">
+                                <div class="info-label">Full Name:</div>
+                                <div id="viewUserFullName" class="info-value">NULL</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Phone:</div>
+                                <div id="viewUserPhone" class="info-value">NULL</div>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h4>Activity Statistics</h4>
+                            <div class="info-row">
+                                <div class="info-label">Courses Enrolled:</div>
+                                <div id="viewUserCourses" class="info-value">NULL</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Tests Taken:</div>
+                                <div id="viewUserTests" class="info-value">NULL</div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-label">Average Score:</div>
+                                <div id="viewUserScore" class="info-value">NULL</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-user-actions">
+                        <button onclick="closeViewModal()" class="btn-cancel">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="${js}/admin/sidebar.js"></script>
         <script src="${js}/admin/users.js"></script>
     </body>
 

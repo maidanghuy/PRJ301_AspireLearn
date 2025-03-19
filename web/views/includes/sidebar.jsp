@@ -6,10 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="dashboard-sidebar">
-    <div class="sidebar-header">
-        <img src="${img}/navbar_icon/Logo.svg" alt="G-Easy Admin" class="admin-logo">
+    <a href="${url}/dashboard" style="display: block;" class="sidebar-header">
+        <img src="${img}/navbar_icon/Logo_white.svg" alt="G-Easy Admin" class="admin-logo">
         <h3>Admin Panel</h3>
-    </div>
+    </a>
 
     <nav class="sidebar-nav">
         <a href="${url}/dashboard" class="nav-item ${'dashboard'.equals(option) ? 'active':''}">

@@ -204,7 +204,7 @@ public class URLRewriteFilter implements Filter {
         if (path.matches("/dashboard")) {
             String action = "dashboard";
             session.setAttribute("option", action);
-            req.getRequestDispatcher("views/admin/dashboard.jsp").forward(request, response);
+            req.getRequestDispatcher("/DashboardManagementServlet").forward(request, response);
             return;
         }
 

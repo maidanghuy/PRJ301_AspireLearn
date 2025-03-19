@@ -2,6 +2,7 @@
 function openAddUserModal() {
     document.getElementById('modalTitle').textContent = 'Add New User';
     document.getElementById('userForm').reset();
+    document.getElementById('infomation').textContent = '';
     document.getElementById('userId').value = '';
     document.getElementById('userModal').style.display = 'block';
 }
@@ -15,6 +16,7 @@ function editUser(button) {
 
     // Gán dữ liệu vào form modal
     document.getElementById('modalTitle').textContent = 'Edit User';
+    document.getElementById('infomation').textContent = 'Leave blank to keep current password when editing';
     document.getElementById('userId').value = cells[0].textContent.trim();  // userID
     document.getElementById('username').value = cells[2].textContent.trim();  // username
     document.getElementById('email').value = cells[3].textContent.trim();  // email
@@ -108,3 +110,33 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 } 
+
+// Mở modal chi tiết user
+function viewUser(button) {
+    document.getElementById('viewUserModal').style.display = 'block';
+    
+    // Tìm phần tử <tr> gần nhất chứa nút Edit
+    const row = button.closest('tr');
+
+    // Lấy tất cả <td> trong hàng đó
+    const cells = row.getElementsByTagName('td');
+    
+    //add class
+    document.getElementById('viewUserRole').classList.remove("teacher", "student", "admin");
+    document.getElementById('viewUserRole').classList.add("badge", cells[4].textContent.trim().toLowerCase());
+    document.getElementById('viewUserStatus').classList.remove("active", "inactive", "banned");
+    document.getElementById('viewUserStatus').classList.add("badge", cells[5].textContent.trim().toLowerCase());
+
+
+    // Gán dữ liệu vào form modal
+    document.getElementById('viewUserName').textContent = cells[2].textContent.trim();  // username
+    document.getElementById('viewUserRole').textContent = cells[4].textContent.trim();  // role
+    document.getElementById('viewUserStatus').textContent = cells[5].textContent.trim();  // userStatus
+    document.getElementById('viewUserId').textContent = cells[0].textContent.trim();  // userID
+    document.getElementById('viewUserEmail').textContent = cells[3].textContent.trim();  // email
+    document.getElementById('viewUserCreated').textContent = cells[6].textContent.trim();  // createAt
+}
+// Đóng modal chi tiết user
+function closeViewModal() {
+    document.getElementById('viewUserModal').style.display = 'none';
+}
