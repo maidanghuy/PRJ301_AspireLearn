@@ -19,7 +19,6 @@
 }
 
 .admin-logo {
-    width: 120px;
     margin-bottom: 10px;
 }
 
@@ -185,6 +184,9 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .sidebar-header{
+        padding: 0 5px;
+    }
     .dashboard-sidebar {
         width: 70px;
     }

@@ -30,7 +30,7 @@
                     </div>
                     <div class="nav-right">
                         <div class="admin-profile">
-                            <img src="${sessionScope.admin.avatarUrl}" alt="Admin Avatar">
+                            <img src="${img}/avatar_admin.png" alt="Admin Avatar">
                             <span>${sessionScope.admin.username}</span>
                             <a href="${url}/logout" class="logout-btn">
                                 <i class="fas fa-sign-out-alt"></i>
@@ -47,8 +47,16 @@
                         </div>
                         <div class="stat-info">
                             <h3>Total Users</h3>
-                            <p class="stat-number">${totalUsers}</p>
-                            <span class="stat-change positive">+5.2% <i class="fas fa-arrow-up"></i></span>
+                            <c:set var="totalUsers" value="${allUser.size()}" />
+                            <c:set var="monthUsers" value="${monthUser.size()}" />
+                            <c:set var="growthPercentage" value="${totalUsers > 0 ? (monthUsers * 100.0 / totalUsers) : 0}" />
+
+                            <p class="stat-number">${totalUsers}</p> <!-- Hiển thị tổng số user -->
+                            <span class="stat-change ${growthPercentage >= 0 ? 'positive' : 'negative'}">
+                                ${String.format("%.1f", growthPercentage)}% 
+                                <i class="fas ${growthPercentage >= 0 ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+                            </span>
+
                         </div>
                     </div>
 
@@ -117,54 +125,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- JavaScript for Charts -->
-        <script>
-            // User Growth Chart
-            const userGrowthCtx = document.getElementById('userGrowthChart').getContext('2d');
-            new Chart(userGrowthCtx, {
-                type: 'line',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    datasets: [{
-                            label: 'New Users',
-                            data: [65, 78, 90, 85, 99, 105],
-                            borderColor: '#FB9400',
-                            tension: 0.4
-                        }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-
-            // Course Engagement Chart
-            const courseEngagementCtx = document.getElementById('courseEngagementChart').getContext('2d');
-            new Chart(courseEngagementCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['Course A', 'Course B', 'Course C', 'Course D', 'Course E'],
-                    datasets: [{
-                            label: 'Active Students',
-                            data: [45, 39, 55, 75, 35],
-                            backgroundColor: '#4CAF50'
-                        }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
-        </script>
+        <script src="${js}/admin/sidebar.js"></script>
+        <script src="${js}/admin/dashboard.js"></script>
     </body>
 
 </html>

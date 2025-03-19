@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import model.User;
 
 /**
@@ -236,8 +237,9 @@ public class UserDAO {
         String sql = "SELECT * FROM users WHERE 1=1";
 
         if (search != null && !search.trim().isEmpty()) {
-            sql += " AND (username LIKE ? OR email LIKE ?)";
+            sql += " AND (username LIKE ? OR email LIKE ? OR userID = ?)";
         }
+
         if (roleFilter != null && !roleFilter.trim().isEmpty()) {
             sql += " AND role = ?";
         }
@@ -254,6 +256,13 @@ public class UserDAO {
                 String searchPattern = "%" + search.trim() + "%";
                 stmt.setString(paramIndex++, searchPattern);
                 stmt.setString(paramIndex++, searchPattern);
+                // Kiểm tra nếu search là số thì thêm userID vào
+                try {
+                    int userID = Integer.parseInt(search);
+                    stmt.setInt(paramIndex++, userID);
+                } catch (NumberFormatException e) {
+                    stmt.setNull(paramIndex++, java.sql.Types.INTEGER); // Nếu không phải số, truyền NULL để tránh lỗi
+                }
             }
             if (roleFilter != null && !roleFilter.trim().isEmpty()) {
                 stmt.setString(paramIndex++, roleFilter);
@@ -417,14 +426,54 @@ public class UserDAO {
         }
     }
 
+    public ArrayList<User> getUsersCreatedThisMonth() {
+        ArrayList<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM Users WHERE MONTH(createdAt) = ? AND YEAR(createdAt) = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            // Lấy tháng và năm hiện tại
+            Calendar cal = Calendar.getInstance();
+            int currentMonth = cal.get(Calendar.MONTH) + 1; // Tháng bắt đầu từ 0 nên cần +1
+            int currentYear = cal.get(Calendar.YEAR);
+
+            stmt.setInt(1, currentMonth);
+            stmt.setInt(2, currentYear);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                User user = new User(
+                        rs.getInt("userID"),
+                        rs.getString("role"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("email"),
+                        rs.getDate("dateOfBirth"),
+                        rs.getString("status"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt")
+                );
+                userList.add(user);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
+    }
+
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
 //        System.out.println(udao.getUser("huy", "1233"));
 //        System.out.println(udao.getTotalUsers(null));
-        ArrayList<User> users = udao.getUsers(0, 15, null, null, null);
-        System.out.println("Danh sách người dùng:");
-        for (User u : users) {
-            System.out.println(u);
-        }
+//        ArrayList<User> users = udao.getUsers(0, 15, null, null, null);
+//        System.out.println("Danh sách người dùng:");
+//        for (User u : users) {
+//            System.out.println(u);
+//        }
+        System.out.println(udao.getAllUsers());
     }
 }
