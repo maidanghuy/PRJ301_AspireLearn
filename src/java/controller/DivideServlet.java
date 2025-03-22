@@ -101,6 +101,7 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewcourse" -> {
+                request.getRequestDispatcher("/CourseServlet").forward(request, response);
                 break;
             }
             case "viewtest" -> {
