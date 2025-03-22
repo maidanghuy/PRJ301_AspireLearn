@@ -54,37 +54,32 @@
                                 <img src="${img}/course/bannercourse.jpg"
                                      alt="IELTS_Beginer" class="course_banner_img" />
                                 <div class="course__info">
-                                    <h1 class="course__title">Khóa học offline</h1>
+                                    <h1 class="course__title">Course online</h1>
                                     <p class="course__description">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed diam nonummy
-                                        nibh euismod tincidunt ut laoreet dolore magna aliquam
-                                        erat volutpat.
+                                        Join our online English course to improve your skills anytime, anywhere! Learn grammar, vocabulary, and conversation with expert instructors. Start today and boost your confidence!
                                     </p>
                                 </div>
                             </div>
 
                             <div class="filter-bar">
-                                <a href=""><button class="filter-btn">Tất cả khóa
+                                <a href="#"><button class="filter-btn">Tất cả khóa
                                         học</button></a>
-                                <a href=""><button class="filter-btn">Đã thanh toán</button></a>
+                                <a href="#"><button class="filter-btn">Đã thanh toán</button></a>
                                 <div>
-                                    <a href="">
-                                        <button class="icon-btn">
-                                            <img src="${img}/course/Filter.svg" alt="Filter" />
-                                            <ul class="icon-catetory">
-                                                <li class="icon-catetory-sub hidden">
-                                                    <a href="">Loại tài liệu</a>
-                                                </li>
-                                                <li class="icon-catetory-sub hidden"><a
-                                                        href="">Tiến độ hoàn thành</a></li>
-                                                <li class="icon-catetory-sub hidden"><a
-                                                        href="">Giảng viên</a></li>
-                                                <li class="icon-catetory-sub hidden"><a
-                                                        href="">Trạng thái</a></li>
-                                            </ul>
-                                        </button>
-                                    </a>
+                                    <button class="icon-btn">
+                                        <img src="${img}/course/Filter.svg" alt="Filter" />
+                                        <ul class="icon-catetory">
+                                            <li class="icon-catetory-sub hidden">
+                                                <a href="">Loại tài liệu</a>
+                                            </li>
+                                            <li class="icon-catetory-sub hidden"><a
+                                                    href="">Tiến độ hoàn thành</a></li>
+                                            <li class="icon-catetory-sub hidden"><a
+                                                    href="">Giảng viên</a></li>
+                                            <li class="icon-catetory-sub hidden"><a
+                                                    href="">Trạng thái</a></li>
+                                        </ul>
+                                    </button>
                                 </div>
                                 <div class="search-bar">
                                     <img src="${img}/course/Vector.svg" alt="Tìm kiếm">
