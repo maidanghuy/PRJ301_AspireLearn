@@ -1,0 +1,296 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 22, 2025, 3:33:31 PM
+    Author     : ADMIN
+*/
+.course {
+    padding: 20px 0;
+    background-color: #f8f9fa;
+}
+
+.course__banner {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.course_banner_img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.course__info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+}
+
+.course__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.course__description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.icon-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 8px 15px;
+}
+
+.search-bar img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.search-bar input {
+    border: none;
+    background: none;
+    width: 100%;
+    padding: 5px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.course-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.course-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.course-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.course-card h3 {
+    padding: 15px;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.course-card p {
+    padding: 0 15px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.detail-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.detail-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .course_banner_img {
+        height: 300px;
+    }
+    
+    .course__title {
+        font-size: 2rem;
+    }
+    
+    .filter-bar {
+        flex-wrap: wrap;
+    }
+    
+    .search-bar {
+        order: -1;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* Animation for cards */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.course-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Icon category dropdown styling */
+.icon-catetory {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    min-width: 200px;
+    z-index: 1000;
+}
+
+.icon-btn:hover .icon-catetory {
+    display: block;
+}
+
+.icon-catetory-sub {
+    padding: 8px 15px;
+    list-style: none;
+}
+
+.icon-catetory-sub a {
+    color: #333;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s ease;
+}
+
+.icon-catetory-sub a:hover {
+    color: #007bff;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    background: #F4F4F4;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 100%;
+    
+}
+.icon-catetory {
+    display: none; /* Mặc định ẩn */
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    list-style: none;
+}
+
+.icon-catetory li {
+    padding: 8px 12px;
+}
+
+.icon-catetory li a {
+    text-decoration: none;
+    color: black;
+}
+
+.icon-catetory.show {
+    display: block; /* Khi có class "show", phần tử sẽ hiển thị */
+}
+
+.subnav {
+    position: absolute;
+    background-color: #fff;
+}
+
+.icon-btn img {
+    width: 24;
+    height: 24;
+
+}
+
+.completed {
+    background: #E8F5E9;
+    border: 2px solid #2E7D32;
+}
+.status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #2E7D32;
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+

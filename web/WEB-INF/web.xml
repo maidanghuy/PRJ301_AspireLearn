@@ -28,6 +28,10 @@
         <servlet-name>ErrorHandlerServlet</servlet-name>
         <servlet-class>controller.ErrorHandlerServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseServlet</servlet-name>
+        <servlet-class>controller.CourseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ErrorHandlerServlet</servlet-name>
         <url-pattern>/ErrorHandlerServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseServlet</servlet-name>
+        <url-pattern>/CourseServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>views/home.jsp</welcome-file>
