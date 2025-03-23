@@ -139,16 +139,6 @@ public class Course implements java.io.Serializable{
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Course{");
-        sb.append("courseID=").append(courseID);
-        sb.append(", courseName=").append(courseName);
-        sb.append(", description=").append(description);
-        sb.append(", level=").append(level);
-        sb.append(", createdAt=").append(createdAt);
-        sb.append(", updatedAt=").append(updatedAt);
-        sb.append(", linkimg=").append(linkimg);
-        sb.append('}');
-        return sb.toString();
-    }  
+        return "Course{" + "courseID=" + courseID + ", courseName=" + courseName + ", description=" + description + ", level=" + level + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", details=" + details + ", learningPathway=" + learningPathway + ", commit=" + commit + ", linkimg=" + linkimg + '}';
+    }
 }

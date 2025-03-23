@@ -103,17 +103,19 @@
                                             class="status-badge ${user.status.toLowerCase()}">${user.status}</span>
                                     </td>
                                     <td>${user.createdAt}</td>
-                                    <td class="actions">
-                                        <button onclick="viewUser(this)" class="btn-action view">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                        <button onclick="editUser(this)" class="btn-action edit">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button onclick="confirmDelete(${user.userID})"
-                                                class="btn-action delete">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
+                                    <td>
+                                        <div class="actions">
+                                            <button onclick="viewUser(this)" class="btn-action view">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button onclick="editUser(this)" class="btn-action edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button onclick="confirmDelete(${user.userID})"
+                                                    class="btn-action delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </c:forEach>

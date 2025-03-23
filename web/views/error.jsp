@@ -28,7 +28,7 @@
                 justify-content: center;
                 padding: 20px;
                 position: relative;
-                overflow: hidden;
+                overflow-x: hidden;
             }
 
             /* Floating elements animation */
@@ -50,7 +50,7 @@
             }
 
             body::after {
-                bottom: -100px;
+                bottom: 20%;
                 left: -100px;
                 animation: float-slow 6s infinite alternate-reverse;
             }
@@ -117,7 +117,7 @@
 
             .illustration {
                 width: 250px;
-                height: 250px;
+                height: 150px;
                 margin: 0 auto 30px;
                 position: relative;
             }
@@ -227,7 +227,7 @@
                 Don't worry! Sometimes the best lessons are found when we're lost. 
                 Let's get you back to your learning journey!
             </p>
-            <a href="${url}/DivideActionServlet" class="back-button">Back to Learning</a>
+            <a href="${url}/view/home" class="back-button">Back to Learning</a>
         </div>
 
         <script>

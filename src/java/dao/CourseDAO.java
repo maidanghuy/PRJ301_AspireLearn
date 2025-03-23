@@ -70,7 +70,8 @@ public class CourseDAO {
         }
         return courses;
     }
-     public List<Course> getAll() {
+
+    public List<Course> getAll() {
         String sql = "select *from [dbo].[Courses]";
         List<Course> courseL = new ArrayList<>();
 
@@ -103,12 +104,12 @@ public class CourseDAO {
 
     public Course getByCourseID(int courseID) {
         String sql = "SELECT * FROM [dbo].[Courses] WHERE courseID = ?";
-        Course course = null; 
+        Course course = null;
 
-        try (PreparedStatement pre = conn.prepareStatement(sql)) { 
+        try (PreparedStatement pre = conn.prepareStatement(sql)) {
             pre.setInt(1, courseID);
             try (ResultSet result = pre.executeQuery()) {
-                if (result.next()) { 
+                if (result.next()) {
                     String courseName = result.getString(2);
                     String description = result.getString(3);
                     String level = result.getString(4);
@@ -127,11 +128,133 @@ public class CourseDAO {
         }
         return course; // Trả về null nếu không tìm thấy
     }
-    
+
+    public ArrayList<Course> getAllCourse() {
+        String sql = "SELECT courseID, courseName, description, level, createdAt, updatedAt, details, learningPathway, commitment, linkimg FROM [dbo].[Courses]";
+        ArrayList<Course> courseList = new ArrayList<>();
+
+        try (PreparedStatement pre = conn.prepareStatement(sql); ResultSet result = pre.executeQuery()) {
+
+            while (result.next()) {
+                int courseID = result.getInt("courseID");
+                String courseName = result.getString("courseName");
+                String description = result.getString("description");
+                String level = result.getString("level");
+                Date createdAt = result.getDate("createdAt");
+                Date updatedAt = result.getDate("updatedAt");
+                String details = result.getString("details");
+                String learningPathway = result.getString("learningPathway");
+                String commitment = result.getString("commitment");
+                String linkimg = result.getString("linkimg");
+
+                Course course = new Course(courseID, courseName, description, level, createdAt, updatedAt, details, learningPathway, commitment, linkimg);
+                courseList.add(course);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error fetching courses: " + e.getMessage());
+        }
+        return courseList;
+    }
+
+    public int getTotalCourses(String search, String levelFilter) {
+        String sql = "SELECT COUNT(*) FROM courses WHERE 1=1";
+
+        if (search != null && !search.trim().isEmpty()) {
+            sql += " AND (course_name LIKE ? OR description LIKE ?)";
+        }
+        if (levelFilter != null && !levelFilter.trim().isEmpty()) {
+            sql += " AND level = ?";
+        }
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            int paramIndex = 1;
+
+            if (search != null && !search.trim().isEmpty()) {
+                String searchPattern = "%" + search.trim() + "%";
+                stmt.setString(paramIndex++, searchPattern);
+                stmt.setString(paramIndex++, searchPattern);
+            }
+            if (levelFilter != null && !levelFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, levelFilter);
+            }
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public ArrayList<Course> getCourses(int offset, int limit, String search, String levelFilter) {
+        ArrayList<Course> courses = new ArrayList<>();
+        String sql = "SELECT courseID, courseName, description, level, createdAt, updatedAt, details, learningPathway, commitment, linkimg FROM Courses WHERE 1=1";
+
+        if (search != null && !search.trim().isEmpty()) {
+            sql += " AND (courseName LIKE ? OR courseID = ?)";
+        }
+
+        if (levelFilter != null && !levelFilter.trim().isEmpty()) {
+            sql += " AND level = ?";
+        }
+
+        sql += " ORDER BY courseID ASC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            int paramIndex = 1;
+
+            if (search != null && !search.trim().isEmpty()) {
+                String searchPattern = "%" + search.trim() + "%";
+                stmt.setString(paramIndex++, searchPattern);
+                // Kiểm tra nếu search là số thì thêm courseID vào
+                try {
+                    int courseID = Integer.parseInt(search);
+                    stmt.setInt(paramIndex++, courseID);
+                } catch (NumberFormatException e) {
+                    stmt.setNull(paramIndex++, java.sql.Types.INTEGER); // Nếu không phải số, truyền NULL
+                }
+            }
+
+            if (levelFilter != null && !levelFilter.trim().isEmpty()) {
+                stmt.setString(paramIndex++, levelFilter);
+            }
+
+            stmt.setInt(paramIndex++, offset);
+            stmt.setInt(paramIndex++, limit);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    courses.add(new Course(
+                            rs.getInt("courseID"),
+                            rs.getString("courseName"),
+                            rs.getString("description"),
+                            rs.getString("level"),
+                            rs.getDate("createdAt"),
+                            rs.getDate("updatedAt"),
+                            rs.getString("details"),
+                            rs.getString("learningPathway"),
+                            rs.getString("commitment"),
+                            rs.getString("linkimg")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return courses;
+    }
+
     public static void main(String[] args) {
         CourseDAO cdao = new CourseDAO();
-        System.out.println(cdao.getByCourseID(2));
+//        System.out.println(cdao.getByCourseID(2));
 //        System.out.println(cdao.getUserCourses(2));
+//        System.out.println(cdao.getAllCourse()); 
+//        System.out.println(cdao.getTotalCourses(null, "Beginner"));
+//        System.out.println(cdao.getCourses(0, 10, "toeic", "Intermediate"));
     }
 
 }
