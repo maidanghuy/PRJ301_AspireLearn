@@ -4,7 +4,7 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,9 +12,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import model.User;
+import model.Course;
 import util.CheckRole;
 import util.Pagination;
 
@@ -22,8 +21,8 @@ import util.Pagination;
  *
  * @author macbookpro
  */
-@WebServlet("/dashboard/users")
-public class UserManagementServlet extends HttpServlet {
+@WebServlet("/dashboard/courses")
+public class CourseManagementServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +41,10 @@ public class UserManagementServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserManagementServlet</title>");
+            out.println("<title>Servlet CourseManagementServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserManagementServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CourseManagementServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,56 +61,50 @@ public class UserManagementServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        processRequest(request, response);
-        
-        int check = CheckRole.checkRole(request, response);
-        if (check == -1){
-            String newPath = request.getContextPath() + "/auth/login";
-            response.sendRedirect(newPath);
-            return;
-        }else if (check == 1){
-            String newPath = request.getContextPath() + "/view/home";
-            response.sendRedirect(newPath);
-            return;
-        }
-
-        // Lấy tham số phân trang và tìm kiếm từ request
-        int pageSize = Pagination.getPageSize(request, 15); // Default 15
-        int currentPage = Pagination.getPageSize(request, 1); // Default 1
-        String search = request.getParameter("search");
-        String roleFilter = request.getParameter("roleFilter");
-        String statusFilter = request.getParameter("statusFilter");
-
-        // Tính toán offset cho database
-        int offset = (currentPage - 1) * pageSize;
-
-        // Khởi tạo DAO
-        UserDAO userDAO = new UserDAO();
-
-        // Lấy tổng số users (có thể có tìm kiếm, lọc theo role và status)
-        int totalUsers = userDAO.getTotalUsers(search, roleFilter, statusFilter);
-
-        // Tính tổng số trang
-        int totalPages = (int) Math.ceil((double) totalUsers / pageSize);
-
-        // Lấy danh sách users theo bộ lọc
-        ArrayList<User> users = userDAO.getUsers(offset, pageSize, search, roleFilter, statusFilter);
-
-        // Set attributes cho JSP
-        request.setAttribute("users", users);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("pageSize", pageSize);
-        request.setAttribute("totalUsers", totalUsers);
-        request.setAttribute("search", search);
-        request.setAttribute("roleFilter", roleFilter);
-        request.setAttribute("statusFilter", statusFilter);
-
-        // Forward đến trang JSP
-        request.getRequestDispatcher("/views/admin/users.jsp").forward(request, response);
-
+        throws ServletException, IOException {
+    int check = CheckRole.checkRole(request, response);
+    if (check == -1) {
+        response.sendRedirect(request.getContextPath() + "/auth/login");
+        return;
+    } else if (check == 1) {
+        response.sendRedirect(request.getContextPath() + "/view/home");
+        return;
     }
+
+    // Lấy tham số phân trang và tìm kiếm từ request
+    int pageSize = Pagination.getPageSize(request, 15); // Default 15
+    int currentPage = Pagination.getCurrentPage(request, 1); // Default 1
+    String search = request.getParameter("search");
+    String levelFilter = request.getParameter("levelFilter");
+
+    // Tính toán offset cho database
+    int offset = (currentPage - 1) * pageSize;
+
+    // Khởi tạo DAO
+    CourseDAO courseDAO = new CourseDAO();
+
+    // Lấy tổng số khóa học có thể có tìm kiếm và lọc theo level
+    int totalCourses = courseDAO.getTotalCourses(search, levelFilter);
+
+    // Tính tổng số trang
+    int totalPages = (int) Math.ceil((double) totalCourses / pageSize);
+
+    // Lấy danh sách khóa học theo bộ lọc
+    ArrayList<Course> courses = courseDAO.getCourses(offset, pageSize, search, levelFilter);
+
+    // Set attributes cho JSP
+    request.setAttribute("courses", courses);
+    request.setAttribute("currentPage", currentPage);
+    request.setAttribute("totalPages", totalPages);
+    request.setAttribute("pageSize", pageSize);
+    request.setAttribute("totalCourses", totalCourses);
+    request.setAttribute("search", search);
+    request.setAttribute("levelFilter", levelFilter);
+
+    // Forward đến trang JSP
+    request.getRequestDispatcher("/views/admin/courses.jsp").forward(request, response);
+}
+
 
     /**
      * Handles the HTTP <code>POST</code> method.

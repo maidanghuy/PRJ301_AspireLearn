@@ -126,6 +126,15 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("/dashboard/users").forward(request, response);
                 break;
             }
+            case "admincourses" -> {
+//                UserDAO udao = new UserDAO();
+//                ArrayList<User> users = udao.getAllUsers();
+//                HttpSession session = request.getSession();
+//                session.setAttribute("users", users);
+//                response.sendRedirect("views/admin/courses.jsp");
+                request.getRequestDispatcher("/dashboard/courses").forward(request, response);
+                break;
+            }
             default -> {
                 request.getRequestDispatcher("views/home.jsp").forward(request, response);
                 break;
