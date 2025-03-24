@@ -1,9 +1,9 @@
 <%@page import="model.User"%>
 <%@page import="model.User_Course"%>
-<%@page import="modelDAO.User_CourseDAO"%>
+<%@page import="dao.User_CourseDAO"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
-<%@page import="com.vnpay.common.Config"%>
+<%@page import="controller.Config"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
@@ -27,12 +27,12 @@
         <meta name="author" content="">
         <title>KẾT QUẢ THANH TOÁN</title>
         <!-- Bootstrap core CSS -->
-        <link href="assets/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="assets/CSS/jumbotron-narrow.css" rel="stylesheet">
+        <link href="assets/css/jumbotron-narrow.css" rel="stylesheet">
         <!-- Custom styles for VNPAY return page -->
-        <link href="assets/CSS/vnpay_return.css" rel="stylesheet">
-        <script src="assets/JS/jquery-1.11.3.min.js"></script>
+        <link href="assets/css/vnpay_return.css" rel="stylesheet">
+        <script src="assets/js/jquery-1.11.3.min.js"></script>
     </head>
     <body>
         <%

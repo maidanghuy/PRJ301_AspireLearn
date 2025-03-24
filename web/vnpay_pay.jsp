@@ -13,11 +13,11 @@
         <meta name="author" content="">
         <title>Tạo mới đơn hàng</title>
         <!-- Bootstrap core CSS -->
-        <link href="assets/CSS/bootstrap.min.css" rel="stylesheet"/>
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
-        <link href="assets/CSS/custom-vnpay.css" rel="stylesheet">
-        <link href="assets/CSS/jumbotron-narrow.css" rel="stylesheet">      
-        <script src="assets/JS/jquery-1.11.3.min.js"></script>
+        <link href="assets/css/custom-vnpay.css" rel="stylesheet">
+        <link href="assets/css/jumbotron-narrow.css" rel="stylesheet">      
+        <script src="assets/js/jquery-1.11.3.min.js"></script>
     </head>
 
     <body>
