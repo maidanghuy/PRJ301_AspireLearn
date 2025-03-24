@@ -12,7 +12,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import model.User;
 import util.CheckRole;
@@ -78,7 +77,7 @@ public class UserManagementServlet extends HttpServlet {
 
         // Lấy tham số phân trang và tìm kiếm từ request
         int pageSize = Pagination.getPageSize(request, 15); // Default 15
-        int currentPage = Pagination.getPageSize(request, 1); // Default 1
+        int currentPage = Pagination.getCurrentPage(request, 1); // Default 1
         String search = request.getParameter("search");
         String roleFilter = request.getParameter("roleFilter");
         String statusFilter = request.getParameter("statusFilter");
