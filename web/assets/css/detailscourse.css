@@ -1,0 +1,333 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 24, 2025, 3:39:59 PM
+    Author     : Asus
+*/
+
+/* Main container styles */
+.course__banner {
+  position: relative;
+}
+.course_banner_img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 30px;
+  overflow: hidden; /* Ensures content does not overflow the image */
+}
+
+.course__title {
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1.67;
+}
+
+.course__description {
+  margin-top: 10px;
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  letter-spacing: 0%;
+}
+
+/* ======================Course Information============================ */
+
+.course__info {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-50%, -50%); /* Centers the content */
+  color: #d99312;
+  z-index: 10; /* Ensures the content is above the image */
+
+  padding: 10px;
+}
+
+.course__banner {
+  color: white;
+}
+
+.course__tabs {
+  display: flex;
+  gap: 40px;
+  margin-top: 25px;
+}
+
+.course__tab {
+  background: #ecebe9;
+  border: solid 1px #ecebe9;
+  width: 100%;
+  max-width: 240px;
+  color: #4f4b45;
+}
+
+.course__tab:hover {
+  background: #fb9400;
+  color: #fff;
+}
+
+.course__details .course__title {
+  margin-top: 30px;
+  color: #000;
+}
+
+.course_footer_btn {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+
+.course__register-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.course_footer_btn a:first-child .course__register-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.course_footer_btn a:nth-child(2) .course__register-btn {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.main-content {
+  margin-bottom: 25px;
+}
+
+/* ======================Calender============================ */
+/* Calendar styles */
+.calendar {
+  width: 100%;
+  background: white;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.weekdays,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.weekdays div {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.day {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+.day.today {
+  background-color: #fb9400;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+
+.day.inactive {
+  color: #ccc;
+}
+
+.calendar {
+  width: 80%;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  color: #000;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1.67;
+}
+
+.calendar-header button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  /* color: white; */
+  cursor: pointer;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  background: #f1f1f1;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding: 10px;
+}
+
+.day {
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.day.today {
+  background-color: #fb9400;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+
+/* Thêm gạch chân cho ngày thuộc thứ 3, 5, 7, nhưng không áp dụng cho today & inactive */
+.days .day:not(.today):not(.inactive):nth-child(7n + 2),
+.days .day:not(.today):not(.inactive):nth-child(7n + 4),
+.days .day:not(.today):not(.inactive):nth-child(7n + 5) {
+  position: relative;
+}
+
+.days .day:not(.today):not(.inactive):nth-child(7n + 2)::after,
+.days .day:not(.today):not(.inactive):nth-child(7n + 4)::after,
+.days .day:not(.today):not(.inactive):nth-child(7n + 6)::after {
+  content: "";
+  display: block;
+  width: 30px;
+  height: 2px;
+  background-color: #fb9400;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ======================Accordion============================ */
+.accordion {
+  width: 80%;
+  margin: 20px auto;
+}
+.accordion-item {
+  display: block;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+  border-radius: 30px !important;
+  margin-bottom: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+}
+
+.accordion-header {
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.7;
+  border-radius: 30px;
+  background: #f1f1f1;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.accordion-header.active {
+  font-weight: 900;
+  font-size: 1.6rem;
+  line-height: 1.75;
+
+  border-radius: 30px;
+  background: orange;
+  color: white;
+}
+
+.accordion-content {
+  border-radius: 30px;
+  display: none;
+  padding: 15px;
+  background: #fff;
+}
+
+.button-container {
+  text-align: right;
+  margin: 20px;
+}
+
+.register-button {
+  background: orange;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.accordion-content p {
+  position: relative;
+  padding-left: 25px;
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.75;
+}
+
+.accordion-content p::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: orange;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
