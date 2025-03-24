@@ -52,6 +52,8 @@
 
         <servlet-name>LoadContentServlet</servlet-name>
         <servlet-class>controller.LoadContentServlet</servlet-class>
+    </servlet>
+    <servlet>
 
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>controller.TestServlet</servlet-class>
@@ -109,6 +111,8 @@
 
         <servlet-name>LoadContentServlet</servlet-name>
         <url-pattern>/LoadContent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
 
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>

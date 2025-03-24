@@ -23,11 +23,6 @@
                     <div class="nav-left">
                         <h2>Users Management</h2>
                     </div>
-                    <!--                                <div class="nav-right">
-                                                        <button class="btn btn-primary" onclick="openAddUserModal()">
-                                                            <i class="fas fa-plus"></i> Add New User
-                                                        </button>
-                                                    </div>-->
                 </div>
 
                 <!-- Search and Filter Section -->
