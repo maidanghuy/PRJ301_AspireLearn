@@ -96,7 +96,7 @@ document.getElementById('searchUser').addEventListener('input', debounce(functio
     currentUrl.searchParams.set('search', e.target.value);
     currentUrl.searchParams.set('page', 1); // Reset về trang 1 khi search
     window.location.href = currentUrl.toString();
-}, 500));
+}, 1000)); //1s sau khi dung
 
 // Debounce function để tránh gọi quá nhiều request khi search
 function debounce(func, wait) {

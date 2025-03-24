@@ -172,6 +172,12 @@ public class URLRewriteFilter implements Filter {
         }
 
         // View
+        // Handle lesson detail URLs
+        if (path.matches("/view/course/lesson")) {
+            req.getRequestDispatcher("/DivideServlet?action=lesson").forward(request, response);
+            return;
+        }
+        
         // Handle course detail URLs
         if (path.matches("/view/course/\\d+")) {
             String courseId = path.substring(path.lastIndexOf('/') + 1);
