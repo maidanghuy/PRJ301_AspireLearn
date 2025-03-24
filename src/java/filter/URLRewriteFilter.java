@@ -190,6 +190,8 @@ public class URLRewriteFilter implements Filter {
             req.getRequestDispatcher("/DivideServlet?action=viewdetailscourse&id=" + courseId).forward(request, response);
             return;
         }
+        
+        
 
         if (path.startsWith("/view/")) {
 

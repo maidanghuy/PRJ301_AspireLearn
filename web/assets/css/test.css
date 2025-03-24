@@ -1,0 +1,235 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 24, 2025, 11:28:21 PM
+    Author     : Asus
+*/
+
+.content-wrapper {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section-title {
+    color: #ff6600;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.test-filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #fb9400;
+    background: white;
+    color: #ff6600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #fb9400;
+    color: white;
+}
+
+.test-container {
+    padding: 20px; /* Thêm padding xung quanh */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Điều chỉnh độ rộng tối thiểu */
+    gap: 25px; /* Tăng khoảng cách giữa các bài test */
+    max-width: 1200px; /* Giới hạn chiều rộng để tránh tràn */
+    margin: 0 auto; /* Căn giữa container */
+}
+
+.test-item {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    padding: 15px;
+}
+
+.test-item:hover {
+    transform: translateY(-5px);
+}
+
+.test-item-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(251, 148, 0, 0.1);
+    background: rgba(251, 148, 0, 0.02);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.test-time {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fb9400;
+    font-weight: 600;
+    font-size: 16px;
+    background: rgba(251, 148, 0, 0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+.test-time i {
+    font-size: 14px;
+}
+
+.meta-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px dashed rgba(251, 148, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
+}
+
+.info-item i {
+    color: #fb9400;
+    font-size: 16px;
+}
+
+.test-badge {
+    font-weight: 600;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.test-badge.listening {
+    background: #fff3e0;
+    color: #fb9400;
+    border: 1px solid #fb9400;
+}
+
+.test-badge.reading {
+    background: #e3f2fd;
+    color: #1976d2;
+    border: 1px solid #1976d2;
+}
+
+.test-name {
+    color: #333;
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.test-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.test-actions {
+    padding: 15px;
+    border-top: 1px solid #fb9400;
+}
+
+.btn-start-test {
+    background: linear-gradient(45deg, #fb9400, #ffa726);
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-start-test:hover {
+    background: linear-gradient(45deg, #ffa726, #fb9400);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(251, 148, 0, 0.3);
+}
+
+.btn-start-test i {
+    transition: transform 0.3s ease;
+}
+
+.btn-start-test:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 10px;
+    }
+
+    .test-container {
+        grid-template-columns: 1fr;
+    }
+
+    .test-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-main {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .test-time {
+        margin-top: 10px;
+        justify-content: flex-start;
+    }
+
+    .meta-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-start-test {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
