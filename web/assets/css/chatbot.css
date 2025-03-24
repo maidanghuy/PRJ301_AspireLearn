@@ -373,7 +373,7 @@ body.show-emoji-picker em-emoji-picker {
         padding: 12px 15px;
     }
     .chat-body {
-        height: calc (90% - 55px ;
+        height: calc(90% - 55px);
         padding: 25px 15px;
     }
     .chat-footer {
