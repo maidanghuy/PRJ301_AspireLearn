@@ -48,6 +48,10 @@
         <servlet-name>MaterialServlet</servlet-name>
         <servlet-class>controller.MaterialServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TestServlet</servlet-name>
+        <servlet-class>controller.TestServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -88,7 +92,6 @@
         <servlet-name>MaterialServlet</servlet-name>
         <url-pattern>/MaterialServlet</url-pattern>
     </servlet-mapping>
-    
     <servlet>
         <servlet-name>LoadVnpayServlet</servlet-name>
         <servlet-class>controller.LoadVnpayServlet</servlet-class>
@@ -96,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>LoadVnpayServlet</servlet-name>
         <url-pattern>/LoadVnpay</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TestServlet</servlet-name>
+        <url-pattern>/TestServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -110,7 +117,6 @@
         <servlet-name>ajaxServlet</servlet-name>
         <url-pattern>/vnpayajax/*</url-pattern>
     </servlet-mapping>
-    
     <welcome-file-list>
         <welcome-file>views/home.jsp</welcome-file>
     </welcome-file-list>

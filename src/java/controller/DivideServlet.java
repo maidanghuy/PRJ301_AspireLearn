@@ -89,6 +89,7 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/auth/register.jsp").forward(request, response);
                 break;
             }
+            
             case "editaccount" -> {
                 request.getRequestDispatcher("views/auth/editAccount.jsp").forward(request, response);
                 break;
@@ -111,6 +112,7 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewtest" -> {
+                request.getRequestDispatcher("/TestServlet").forward(request, response);
                 break;
             }
             case "viewaccount" -> {
