@@ -44,6 +44,10 @@
         <servlet-name>LessonServlet</servlet-name>
         <servlet-class>controller.LessonServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MaterialServlet</servlet-name>
+        <servlet-class>controller.MaterialServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>LessonServlet</servlet-name>
         <url-pattern>/LessonServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MaterialServlet</servlet-name>
+        <url-pattern>/MaterialServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>views/home.jsp</welcome-file>
