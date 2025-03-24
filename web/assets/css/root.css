@@ -38,7 +38,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .container-right {
   position: relative;
-  max-width: calc(100% - 320px);
+  width: 100%;
   padding-top: 2rem;
   background-color: #fff;
 }

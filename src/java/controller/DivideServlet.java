@@ -98,10 +98,16 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewmaterial" -> {
+                request.getRequestDispatcher("/MaterialServlet").forward(request, response);
                 break;
             }
             case "viewcourse" -> {
                 request.getRequestDispatcher("/CourseServlet").forward(request, response);
+                break;
+            }
+            case "viewdetailscourse" -> {
+                int courseId = Integer.parseInt(request.getParameter("id"));
+                request.getRequestDispatcher("/DetailsCourseServlet?id=" + courseId).forward(request, response);
                 break;
             }
             case "viewtest" -> {
@@ -117,6 +123,13 @@ public class DivideServlet extends HttpServlet {
                 request.setAttribute("listCourseOrder", listCourseOrder);
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
+            }
+            case "lesson" -> {
+                HttpSession session = request.getSession();
+                int courseID = (Integer) session.getAttribute("courseID");
+                Course c = (Course) session.getAttribute("course");
+                System.out.println(c);
+                request.getRequestDispatcher("/LessonServlet?id=" + courseID).forward(request, response);
             }
             case "adminusers" -> {
 //                UserDAO udao = new UserDAO();
