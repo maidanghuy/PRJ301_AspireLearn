@@ -126,6 +126,11 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
             }
+            case "viewlesson" -> {
+                int lessonId = Integer.parseInt(request.getParameter("id"));
+                request.getRequestDispatcher("/LoadContent?id=" + lessonId).forward(request, response);
+                break;
+            }
             case "lesson" -> {
                 HttpSession session = request.getSession();
                 int courseID = (Integer) session.getAttribute("courseID");
