@@ -123,6 +123,13 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
             }
+            case "lesson" -> {
+                HttpSession session = request.getSession();
+                int courseID = (Integer) session.getAttribute("courseID");
+                Course c = (Course) session.getAttribute("course");
+                System.out.println(c);
+                request.getRequestDispatcher("/LessonServlet?id=" + courseID).forward(request, response);
+            }
             case "adminusers" -> {
 //                UserDAO udao = new UserDAO();
 //                ArrayList<User> users = udao.getAllUsers();
