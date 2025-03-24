@@ -4,26 +4,18 @@
  */
 package controller;
 
-import dao.CourseDAO;
-import dao.User_CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
-import model.Course;
-import model.User;
-import model.User_Course;
 
 /**
  *
- * @author Asus
+ * @author LENOVO
  */
-public class DetailsCourseServlet extends HttpServlet {
+public class LoadVnpayServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +34,10 @@ public class DetailsCourseServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DetailsCourseServlet</title>");
+            out.println("<title>Servlet LoadVnpayServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DetailsCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoadVnpayServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,44 +55,7 @@ public class DetailsCourseServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        HttpSession session = request.getSession();
-        session.setAttribute("courseID", id);
-        CourseDAO dao = new CourseDAO();
-        Course course = dao.getByCourseID(id);
-
-        String learningPathway = course.getLearningPathway(); // Chuỗi String từ DB
-        Map<String, String> learningPathwayMap = new HashMap<>();
-
-        // Tách các phần tử theo dấu ","
-        String[] parts = learningPathway.split(",");
-        for (String part : parts) {
-            String[] keyValue = part.split(":"); // Tách key và value theo dấu ":"
-            if (keyValue.length == 2) {
-                String key = keyValue[0].trim(); // Tên khóa học
-                String value = keyValue[1].trim(); // Nội dung khóa học
-                learningPathwayMap.put(key, value);
-            }
-        }
-
-        request.setAttribute("course", course);
-        request.setAttribute("learningPathway", learningPathwayMap);
-//        request.getRequestDispatcher("views/user/detailscourse.jsp").forward(request, response);
-
-        //        ----------------------------
-        //new
-        User user = (User) request.getSession().getAttribute("user");
-        int userID = user.getUserID();
-//        int coureID = (int) request.getSession().getAttribute("coureID");
-        User_CourseDAO ucDao = new User_CourseDAO();
-        User_Course uc = ucDao.getUser_CourseByID(userID, id);
-        if (uc.getProgress() != null) {
-            request.getRequestDispatcher("LessonServlet").forward(request, response);
-        } else {
-            request.getRequestDispatcher("views/user/detailscourse.jsp").forward(request, response);
-        }
-//        ----------------------------
-
+        response.sendRedirect("vnpay_pay.jsp");
     }
 
     /**
