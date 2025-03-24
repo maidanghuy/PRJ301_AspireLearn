@@ -178,6 +178,12 @@ public class URLRewriteFilter implements Filter {
             return;
         }
         
+        if (path.matches("/view/course/lesson/\\d+")) {
+            String lessonID = path.substring(path.lastIndexOf('/') + 1);
+            req.getRequestDispatcher("/DivideServlet?action=viewlesson&id=" + lessonID).forward(request, response);
+            return;
+        }
+        
         // Handle course detail URLs
         if (path.matches("/view/course/\\d+")) {
             String courseId = path.substring(path.lastIndexOf('/') + 1);
