@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.CourseDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Course;
 import model.User;
 import util.CheckRole;
 
@@ -61,23 +63,32 @@ public class DashboardManagementServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         int check = CheckRole.checkRole(request, response);
-        if (check == -1){
+        if (check == -1) {
             String newPath = request.getContextPath() + "/auth/login";
             response.sendRedirect(newPath);
             return;
-        }else if (check == 1){
+        } else if (check == 1) {
             String newPath = request.getContextPath() + "/view/home";
             response.sendRedirect(newPath);
             return;
         }
-        
+
         UserDAO udao = new UserDAO();
         ArrayList<User> allUser = udao.getAllUsers();
         udao = new UserDAO();
         ArrayList<User> monthUser = udao.getUsersCreatedThisMonth();
-        
+
+        CourseDAO cdao = new CourseDAO();
+        ArrayList<Course> allCourse = cdao.getAllCourse();
+        cdao = new CourseDAO();
+        ArrayList<Course> monthCourse = cdao.getCoursesCreatedThisMonth();
+
         request.setAttribute("allUser", allUser);
+        request.setAttribute("allCourse", allCourse);
+
         request.setAttribute("monthUser", monthUser);
+        request.setAttribute("monthCourse", monthCourse);
+
         request.getRequestDispatcher("views/admin/dashboard.jsp").forward(request, response);
     }
 

@@ -469,11 +469,11 @@ public class UserDAO {
         UserDAO udao = new UserDAO();
 //        System.out.println(udao.getUser("huy", "1233"));
 //        System.out.println(udao.getTotalUsers(null));
-//        ArrayList<User> users = udao.getUsers(0, 15, null, null, null);
-//        System.out.println("Danh sách người dùng:");
-//        for (User u : users) {
-//            System.out.println(u);
-//        }
-        System.out.println(udao.getAllUsers());
+        ArrayList<User> users = udao.getUsers(15, 15, null, null, null);
+        System.out.println("Danh sách người dùng:");
+        for (User u : users) {
+            System.out.println(u);
+        }
+//        System.out.println(udao.getAllUsers());
     }
 }

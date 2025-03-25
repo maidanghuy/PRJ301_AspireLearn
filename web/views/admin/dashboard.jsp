@@ -2,6 +2,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../includes/path-config.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -53,9 +54,10 @@
 
                             <p class="stat-number">${totalUsers}</p> <!-- Hiển thị tổng số user -->
                             <span class="stat-change ${growthPercentage >= 0 ? 'positive' : 'negative'}">
-                                ${String.format("%.1f", growthPercentage)}% 
+                                <fmt:formatNumber value="${growthPercentage}" type="number" maxFractionDigits="1"/>% 
                                 <i class="fas ${growthPercentage >= 0 ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
                             </span>
+
 
                         </div>
                     </div>
@@ -65,9 +67,16 @@
                             <i class="fas fa-book"></i>
                         </div>
                         <div class="stat-info">
-                            <h3>Active Courses</h3>
-                            <p class="stat-number">${activeCourses}</p>
-                            <span class="stat-change positive">+2.4% <i class="fas fa-arrow-up"></i></span>
+                            <h3>Total Courses</h3>
+                            <c:set var="totalCourses" value="${allCourse.size()}" />
+                            <c:set var="monthCourses" value="${monthCourse.size()}" />
+                            <c:set var="courseGrowth" value="${totalCourses > 0 ? (monthCourses * 100.0 / totalCourses) : 0}" />
+
+                            <p class="stat-number">${totalCourses}</p> <!-- Hiển thị tổng số khóa học -->
+                            <span class="stat-change ${courseGrowth >= 0 ? 'positive' : 'negative'}">
+                                <fmt:formatNumber value="${courseGrowth}" type="number" maxFractionDigits="1"/>% 
+                                <i class="fas ${courseGrowth >= 0 ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+                            </span>
                         </div>
                     </div>
 

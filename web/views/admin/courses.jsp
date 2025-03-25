@@ -126,7 +126,7 @@
                 <div class="pagination-container">
                     <div class="pagination-info">
                         Showing ${(currentPage-1)*pageSize + 1} to ${Math.min(currentPage*pageSize,
-                                  1*totalUsers)} of ${totalUsers} entries
+                                  1*totalCourses)} of ${totalCourses} entries
                     </div>
                     <div class="pagination">
                         <c:if test="${currentPage > 1}">

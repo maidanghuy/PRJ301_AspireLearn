@@ -72,9 +72,11 @@ public class LoginGoogleServlet extends HttpServlet {
         if (user == null) {  // Nếu email chưa tồn tại -> Đăng ký mới
             user = new User(acc);
             System.out.println("New User: " + user);
+            udao = new UserDAO();
             udao.registerUser(user);
 
             // Lấy lại user sau khi đăng ký để đảm bảo dữ liệu đầy đủ
+            udao = new UserDAO();
             user = udao.getUserByEmail(acc.getEmail());
         } else {
             System.out.println("Existing User: " + user);
