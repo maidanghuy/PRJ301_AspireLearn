@@ -62,9 +62,8 @@
                             </div>
 
                             <div class="filter-bar">
-                                <a href="#"><button class="filter-btn">Tất cả khóa
-                                        học</button></a>
-                                <a href="#"><button class="filter-btn">Đã thanh toán</button></a>
+                                <a href="#"><button class="filter-btn" onclick="showAllCourses()">Tất cả khóa học</button></a>
+                                <a href="#"><button class="filter-btn" onclick="showPaidCourses()">Đã thanh toán</button></a>
                                 <div>
                                     <button class="icon-btn">
                                         <img src="${img}/course/Filter.svg" alt="Filter" />
@@ -193,6 +192,80 @@
         // Apply debounce to search function
         const debouncedSearch = debounce(searchCourses, 300);
         document.getElementById('searchInput').addEventListener('input', debouncedSearch);
+        </script>
+        <script>
+        function showAllCourses() {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                card.style.display = 'block';
+            });
+            
+            // Remove no results message if exists
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+            
+            // Update active state of buttons
+            updateActiveButton('all');
+        }
+
+        function showPaidCourses() {
+            const cards = document.querySelectorAll('.course-card');
+            let hasVisibleCards = false;
+            
+            cards.forEach(card => {
+                // Check if course is paid (you'll need to add this data attribute to your course cards)
+                const isPaid = card.getAttribute('data-paid') === 'true';
+                if (isPaid) {
+                    card.style.display = 'block';
+                    hasVisibleCards = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Show no results message if no paid courses
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            if (!hasVisibleCards) {
+                if (!noResultsMessage) {
+                    const message = document.createElement('div');
+                    message.id = 'noResultsMessage';
+                    message.className = 'no-results-message';
+                    message.innerHTML = `
+                        <img src="${img}/course/no-results.svg" alt="Không có khóa học đã thanh toán">
+                        <h3>Chưa có khóa học đã thanh toán</h3>
+                        <p>Hãy đăng ký và thanh toán khóa học để xem nội dung</p>
+                    `;
+                    document.querySelector('.course-container').appendChild(message);
+                }
+            } else if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+            
+            // Update active state of buttons
+            updateActiveButton('paid');
+        }
+
+        function updateActiveButton(type) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(button => {
+                if (type === 'all' && button.textContent.includes('Tất cả')) {
+                    button.classList.add('active');
+                } else if (type === 'paid' && button.textContent.includes('Đã thanh toán')) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+        }
+
+        // Update the course card HTML to include paid status
+        document.querySelectorAll('.course-card').forEach(card => {
+            // You'll need to replace this with actual paid status from your backend
+            const isPaid = false; // This should come from your backend
+            card.setAttribute('data-paid', isPaid);
+        });
         </script>
 
     </body>
