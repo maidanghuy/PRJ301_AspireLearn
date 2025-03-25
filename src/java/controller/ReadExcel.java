@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Reading;
-import model.Test;
-import dao.TestDAO;
+
+import model.Listening;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
@@ -105,42 +105,42 @@ public class ReadExcel {
         return questionList;
     }
 
-//    public static ArrayList<Listenning> getListenning(String filePath) {
-//        ArrayList<Listenning> listen = new ArrayList<>();
-//
-//        try (FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
-//            Sheet sheet = workbook.getSheetAt(0);
-//            boolean firstRow = true;
-//
-//            for (Row row : sheet) {
-//                if (firstRow) { // Bỏ qua tiêu đề
-//                    firstRow = false;
-//                    continue;
-//                }
-//
-//                if (isRowEmpty(row)) { // Nếu hàng trống, dừng việc đọc file
-//                    System.out.println("Encountered empty row. Stopping file read.");
-//                    break;
-//                }
-//
-//                String part =  getCellValue(row, 0);
-//                int num = (int) getNumericCellValue(row, 1);
-//                String img = getCellValue(row, 2);
-//                String audio = getCellValue(row, 3);
-//                String question = getCellValue(row, 4);
-//                String option1 = getCellValue(row, 5);
-//                String option2 = getCellValue(row, 6);
-//                String option3 = getCellValue(row, 7);
-//                String option4 = getCellValue(row, 8);
-//                String correctAnswer = getCellValue(row, 9);
-//
-//                listen.add(new Listenning(part, num,  img, audio, question, option1, option2, option3, option4, correctAnswer));
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return listen;
-//    }
+    public static ArrayList<Listening> getListenning(String filePath) {
+        ArrayList<Listening> listen = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(new File(filePath)); Workbook workbook = new XSSFWorkbook(fis)) {
+            Sheet sheet = workbook.getSheetAt(0);
+            boolean firstRow = true;
+
+            for (Row row : sheet) {
+                if (firstRow) { // Bỏ qua tiêu đề
+                    firstRow = false;
+                    continue;
+                }
+
+                if (isRowEmpty(row)) { // Nếu hàng trống, dừng việc đọc file
+                    System.out.println("Encountered empty row. Stopping file read.");
+                    break;
+                }
+
+                String part =  getCellValue(row, 0);
+                int num = (int) getNumericCellValue(row, 1);
+                String img = getCellValue(row, 2);
+                String audio = getCellValue(row, 3);
+                String question = getCellValue(row, 4);
+                String option1 = getCellValue(row, 5);
+                String option2 = getCellValue(row, 6);
+                String option3 = getCellValue(row, 7);
+                String option4 = getCellValue(row, 8);
+                String correctAnswer = getCellValue(row, 9);
+
+                listen.add(new Listening(part, num,  img, audio, question, option1, option2, option3, option4, correctAnswer));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listen;
+    }
        
      public static void main(String[] args) {
         
