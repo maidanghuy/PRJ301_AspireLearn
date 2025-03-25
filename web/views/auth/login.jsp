@@ -60,7 +60,7 @@
                             </span>
                         </div>
                         <div class="auth__input-group">
-                            <a href="#" class="auth__forgot-password">Quên mật khẩu?</a>
+                            <a href="${url}/forgotpassword" class="auth__forgot-password">Quên mật khẩu?</a>
                         </div>
                         <div class="auth__button-group">
                             <button type="submit" class="auth__button auth__button--login append">Đăng

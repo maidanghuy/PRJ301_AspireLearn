@@ -49,15 +49,20 @@
         <servlet-class>controller.MaterialServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>LoadContentServlet</servlet-name>
         <servlet-class>controller.LoadContentServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>controller.TestServlet</servlet-class>
-
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>controller.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.ResetPassword</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
@@ -108,15 +113,20 @@
         <url-pattern>/LoadVnpay</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>LoadContentServlet</servlet-name>
         <url-pattern>/LoadContent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
-
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/ResetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
