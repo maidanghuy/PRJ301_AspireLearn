@@ -64,6 +64,10 @@
         <servlet-name>ResetPassword</servlet-name>
         <servlet-class>controller.ResetPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReadingServlet</servlet-name>
+        <servlet-class>controller.ReadingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>ResetPassword</servlet-name>
         <url-pattern>/ResetPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReadingServlet</servlet-name>
+        <url-pattern>/ReadingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
