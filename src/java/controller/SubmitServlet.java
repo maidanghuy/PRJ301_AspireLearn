@@ -135,8 +135,10 @@ public class SubmitServlet extends HttpServlet {
         
         session.setAttribute("score", score);
         session.setAttribute("totalQuestions", totalQuestions);
-
-// Trả về JSON cho client
+        Integer userID = (Integer) session.getAttribute("userID");
+        double result= (double)score/totalQuestions*100;
+        boolean isSaved = dao.saveTestScore(userID, testID, score);
+        // Trả về JSON cho client
         response.sendRedirect(request.getContextPath() + "/view/viewSubmit");
 
     }
