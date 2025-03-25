@@ -157,7 +157,6 @@ function submitAnswers() {
                 window.location.href = urlPath + "/view/viewSubmit";
             })
             .catch(error => console.error("Error submitting answers:", error));
-
 }
 
 

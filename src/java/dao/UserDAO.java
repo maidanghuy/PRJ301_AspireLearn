@@ -465,6 +465,26 @@ public class UserDAO {
         return userList;
     }
 
+    public boolean resetPassword(String email, String newPassword) {
+        String sql = "UPDATE Users SET password = ?, updatedAt = GETDATE() WHERE email = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, newPassword);
+            stmt.setString(2, email);
+
+            int rowsUpdated = stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         UserDAO udao = new UserDAO();
 //        System.out.println(udao.getUser("huy", "1233"));

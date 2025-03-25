@@ -88,6 +88,11 @@ public class DivideServlet extends HttpServlet {
                 response.sendRedirect("view/home");
                 break;
             }
+            case "forgotpassword" -> {
+                request.getRequestDispatcher("views/auth/forgotpassword.jsp").forward(request, response);
+//                processRequest(request, response);
+                break;
+            }
             case "register" -> {
                 request.getRequestDispatcher("views/auth/register.jsp").forward(request, response);
                 break;

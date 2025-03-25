@@ -17,7 +17,6 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.User;
 import util.CheckRole;
 
 /**
@@ -235,7 +234,19 @@ public class URLRewriteFilter implements Filter {
             req.getRequestDispatcher("/DivideServlet?action=logout").forward(request, response);
             return;
         }
-
+        
+        // Forgot password
+        if (path.matches("/forgotpassword")) {
+            req.getRequestDispatcher("/DivideServlet?action=forgotpassword").forward(request, response);
+            return;
+        }
+        
+        // Reset Password
+        if (path.matches("/forgotpassword")) {
+            req.getRequestDispatcher("/DivideServlet?action=forgotpassword").forward(request, response);
+            return;
+        }
+        
         // Admin
         if (path.matches("/dashboard")) {
             String action = "dashboard";
