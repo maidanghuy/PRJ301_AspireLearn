@@ -1,0 +1,261 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 25, 2025, 10:41:49 PM
+    Author     : Asus
+*/
+
+.testing {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.part-navigation {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.part-button {
+    padding: 10px 20px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: #555;
+    background: white;
+    border: 2px solid #ff6600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.part-button:hover {
+    background: #ff6600;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.part-button.active {
+    background: #ff6600;
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.question-container {
+    flex: 2;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+}
+
+.question-list {
+    list-style: none;
+    padding: 0;
+}
+
+.question-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid #ff6600;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    /*                        transition: all 0.3s ease;*/
+}
+
+.question-item:hover {
+    /*                        transform: translateY(-2px);*/
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.question-text {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Ẩn tất cả các phần ban đầu */
+.question-text[class*="part"],
+.question-item[class*="part"] {
+    display: none;
+}
+
+/* Hiển thị các phần của part đang active */
+.question-text.active-part,
+.question-item.active-part {
+    display: block;
+}
+
+.paragraph {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    font-weight: 300;
+    /* margin-bottom: 15px; */
+    color: #444;
+    text-align: justify;
+}
+
+.answer-options {
+    list-style: none;
+    padding: 0;
+}
+
+.answer-option {
+    font-size: 1.8rem;
+    line-height: 1.75;
+    font-weight: 400;
+
+    /*                        transition: background-color 0.2s ease;*/
+}
+
+.answer-option:hover {
+    background-color: #fff3e0;
+}
+
+.answer-option input[type="radio"] {
+    margin-right: 12px;
+    /*                        transform: scale(1.2);*/
+}
+
+.question-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: #fff3e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 20px;
+    height: fit-content;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+.question-nav div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.question-nav .question-numbers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 15px 0;
+    max-width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+/* Ẩn tất cả các question-link ban đầu */
+.question-link {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    color: #ff6600;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(255, 102, 0, 0.2);
+    transition: all 0.3s ease;
+    line-height: 35px;
+    text-align: center;
+    padding: 0;
+}
+
+/* Hiển thị question-link của part đang active */
+.question-link.active-part {
+    display: flex;
+}
+
+.question-link:hover {
+    background: #ff6600;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 102, 0, 0.3);
+}
+
+.question-link.active {
+    background: #ff6600;
+    color: #fff;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 102, 0, 0.3);
+}
+
+.question-link.answered {
+    background: #4caf50;
+    color: #fff;
+    border: none;
+    transform: scale(1.05);
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
+}
+
+.countdown-timer {
+    font-size: 28px;
+    color: #ff6600;
+    font-weight: bold;
+    padding: 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px 30px;
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(255, 102, 0, 0.2);
+}
+
+.btn-submit:hover {
+    background-color: #e65c00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 102, 0, 0.3);
+}
+
+.testing{
+    display: flex;
+}
+
+.question-container{
+    flex: 2;
+}
+.question-nav{
+    flex: 1;
+}

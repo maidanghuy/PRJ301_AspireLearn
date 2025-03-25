@@ -59,6 +59,10 @@
         <servlet-class>controller.TestServlet</servlet-class>
 
     </servlet>
+    <servlet>
+        <servlet-name>ReadingServlet</servlet-name>
+        <servlet-class>controller.ReadingServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -117,6 +121,10 @@
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
 
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReadingServlet</servlet-name>
+        <url-pattern>/ReadingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

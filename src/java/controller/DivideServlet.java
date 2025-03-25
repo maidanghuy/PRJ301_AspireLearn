@@ -5,6 +5,7 @@
 package controller;
 
 import dao.CourseDAO;
+import dao.TestDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +19,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Course;
+import model.Test;
 import model.User;
 import util.EmailValidator;
 
@@ -114,6 +116,18 @@ public class DivideServlet extends HttpServlet {
             }
             case "viewtest" -> {
                 request.getRequestDispatcher("/TestServlet").forward(request, response);
+                break;
+            }
+            case "starttest" -> {
+                int testID = Integer.parseInt(request.getParameter("id"));
+                TestDAO dao= new TestDAO();
+                Test test= new Test();
+                test=dao.getByTestID(testID);
+                if(test.getCategory().equalsIgnoreCase("reading")){
+                    request.getRequestDispatcher("/ReadingServlet?id=" + testID).forward(request, response);
+                }else{
+                    request.getRequestDispatcher("/TestListenningServlet?id=" + testID).forward(request, response);
+                }
                 break;
             }
             case "viewaccount" -> {
