@@ -8,22 +8,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 .course {
     padding: 20px 0;
+    background-color: #f8f9fa;
 }
 
 .course__banner {
     position: relative;
-    max-height: 30rem;
+    height: 400px;
     overflow: hidden;
     border-radius: 15px;
     margin-bottom: 40px;
-    box-shadow: 0 4px 15px rgba(251, 148, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(251, 148, 0, 0.15);
 }
 
 .course_banner_img {
     width: 100%;
-    aspect-ratio: 16/9;
+    
     object-fit: cover;
-    border-radius: 15px;
 }
 
 .course__info {
@@ -31,7 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 30px;
+    padding: 40px;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
 }
@@ -44,9 +44,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .course__description {
-    font-size: 2rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     max-width: 800px;
+    opacity: 0.9;
 }
 
 .filter-bar {
@@ -54,54 +55,69 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
     gap: 15px;
     margin-bottom: 30px;
-    padding: 15px;
+    padding: 15px 25px;
     background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(251, 148, 0, 0.08);
 }
 
 .filter-btn {
     padding: 10px 20px;
-    border: 1px solid transparent;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    background-color: #f0f0f0;
+    background-color: white;
     color: #333;
     font-weight: 500;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .filter-btn:hover {
     background-color: #FB9400;
     color: white;
-    border-color: #e68500;
+    border-color: #FB9400;
+    transform: translateY(-1px);
 }
 
 .icon-btn {
-    padding: 10px;
-    border: none;
+    position: relative;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    background-color: #f0f0f0;
+    background-color: white;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .icon-btn:hover {
-    background-color: rgba(251, 148, 0, 0.1);
+    background-color: rgba(251, 148, 0, 0.05);
+    border-color: #FB9400;
+}
+
+.icon-btn img {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
 }
 
 .search-bar {
     flex-grow: 1;
     display: flex;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 8px 15px;
+    transition: all 0.3s ease;
 }
 
-.search-bar img {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+.search-bar:focus-within {
+    border-color: #FB9400;
+    box-shadow: 0 0 0 3px rgba(251, 148, 0, 0.1);
 }
 
 .search-bar input {
@@ -109,14 +125,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background: none;
     width: 100%;
     padding: 5px;
-    font-size: 2rem;
+    font-size: 0.95rem;
     outline: none;
 }
 
 .course-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
     padding: 20px 0;
 }
 
@@ -124,34 +140,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    position: relative;
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(251, 148, 0, 0.2);
-    border: 1px solid #FB9400;
+    box-shadow: 0 8px 20px rgba(251, 148, 0, 0.15);
 }
 
 .course-img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-img {
+    transform: scale(1.05);
 }
 
 .course-card h3 {
-    padding: 15px;
+    padding: 20px 20px 10px;
     margin: 0;
     font-size: 1.2rem;
     color: #333;
     font-weight: 600;
+    line-height: 1.4;
 }
 
 .course-card p {
-    padding: 0 15px;
+    padding: 0 20px;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
 .detail-btn {
@@ -161,16 +184,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: #FB9400;
     color: white;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .detail-btn:hover {
     background-color: #e68500;
+    transform: translateY(-1px);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .course_banner_img {
+    .course__banner {
         height: 300px;
     }
 
@@ -180,12 +206,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
     .filter-bar {
         flex-wrap: wrap;
+        padding: 15px;
     }
 
     .search-bar {
         order: -1;
         width: 100%;
         margin-bottom: 10px;
+    }
+
+    .course-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .course-img {
+        height: 180px;
     }
 }
 
@@ -205,79 +241,134 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Icon category dropdown styling */
+/* Dropdown styling */
 .icon-catetory {
     display: none;
     position: absolute;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-    min-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 8px 0;
+    min-width: 240px;
     z-index: 1000;
+    right: 0;
+    top: calc(100% + 8px);
+    border: 1px solid rgba(251, 148, 0, 0.1);
+    transform-origin: top right;
 }
 
 .icon-btn:hover .icon-catetory {
     display: block;
+    animation: dropdownFade 0.2s ease-out;
 }
 
+/* Dropdown items */
 .icon-catetory-sub {
-    padding: 8px 15px;
+    padding: 0;
+    margin: 0;
     list-style: none;
+}
+
+.icon-catetory-sub:first-child {
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
 }
 
 .icon-catetory-sub a {
     color: #333;
     text-decoration: none;
-    display: block;
-    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    position: relative;
 }
 
 .icon-catetory-sub a:hover {
     color: #FB9400;
+    background-color: rgba(251, 148, 0, 0.05);
 }
 
-.filter-bar {
-    display: flex;
-    align-items: center;
-    background: #F4F4F4;
-    margin-top: 20px;
-    border-radius: 20px;
-    width: 100%;
-
-}
-.icon-catetory {
-    display: none; /* Mặc định ẩn */
+.icon-catetory-sub a::before {
+    content: '';
     position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: #FB9400;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.icon-catetory-sub a:hover::before {
+    opacity: 1;
+}
+
+/* Dropdown animation */
+@keyframes dropdownFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Active filter indicator */
+.icon-btn[data-active-filter]::after {
+    content: attr(data-active-filter);
+    color: #FB9400;
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-left: 4px;
+}
+
+/* Add a subtle arrow to the dropdown */
+.icon-catetory::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    width: 10px;
+    height: 10px;
     background: white;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    list-style: none;
+    transform: rotate(45deg);
+    border-left: 1px solid rgba(251, 148, 0, 0.1);
+    border-top: 1px solid rgba(251, 148, 0, 0.1);
 }
 
-.icon-catetory li {
-    padding: 8px 12px;
-}
+/* Mobile responsiveness for dropdown */
+@media (max-width: 768px) {
+    .icon-catetory {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        border-radius: 12px 12px 0 0;
+        max-height: 80vh;
+        overflow-y: auto;
+        animation: slideUp 0.3s ease-out;
+    }
 
-.icon-catetory li a {
-    text-decoration: none;
-    color: black;
-}
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
 
-.icon-catetory.show {
-    display: block; /* Khi có class "show", phần tử sẽ hiển thị */
-}
-
-.subnav {
-    position: absolute;
-    background-color: #fff;
-}
-
-.icon-btn img {
-    width: 24;
-    height: 24;
-
+    .icon-catetory::before {
+        display: none;
+    }
 }
 
 .completed {
@@ -286,14 +377,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 .status {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
     background: #FB9400;
     color: white;
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Add subtle orange tint to search bar on focus */
@@ -317,5 +409,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: white;
     border-color: #e68500;
 }
+
 
 
