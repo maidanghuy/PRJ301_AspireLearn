@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Course;
 import model.User;
+import util.EmailValidator;
 
 /**
  *
@@ -89,7 +90,7 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/auth/register.jsp").forward(request, response);
                 break;
             }
-            
+
             case "editaccount" -> {
                 request.getRequestDispatcher("views/auth/editAccount.jsp").forward(request, response);
                 break;
@@ -283,6 +284,16 @@ public class DivideServlet extends HttpServlet {
                 return;
             }
 
+            // Kiểm tra email có hợp lệ không bằnh API
+            if (!EmailValidator.checkEmail(email)) {
+                request.getSession().setAttribute("error", "Email không tồn tại hoặc không hợp lệ");
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("email", email);
+                request.getSession().setAttribute("dateOfBirth", dateOfBirthStr);
+                response.sendRedirect("auth/register");
+                return;
+            }
+
             // Kiểm tra ngày sinh
             userDAO = new UserDAO();
             Date dateOfBirth = null;
@@ -379,7 +390,14 @@ public class DivideServlet extends HttpServlet {
             request.getSession().setAttribute("error", "Email đã được sử dụng! Vui lòng chọn email khác.");
             response.sendRedirect("edit/account");
             return;
-        } else {
+        }
+
+        // Kiểm tra email có hợp lệ không bằnh API
+        if (!EmailValidator.checkEmail(email)) {
+            request.getSession().setAttribute("error", "Email không tồn tại hoặc không hợp lệ");
+            response.sendRedirect("edit/account");
+            return;
+        }else {
             user.setEmail(email);
         }
 
