@@ -71,13 +71,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-size: 0.95rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .filter-btn:hover {
+    background-color: rgba(251, 148, 0, 0.05);
+    border-color: #FB9400;
+    transform: translateY(-1px);
+}
+
+.filter-btn.active {
     background-color: #FB9400;
     color: white;
     border-color: #FB9400;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(251, 148, 0, 0.2);
+}
+
+.filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* Add ripple effect for filter buttons */
+.filter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.filter-btn:active::before {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
 }
 
 .icon-btn {
@@ -496,6 +537,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     to {
         transform: rotate(360deg);
     }
+}
+
+/* Add paid course indicator */
+.course-card[data-paid="true"]::before {
+    content: 'Đã thanh toán';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #FB9400;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    z-index: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
