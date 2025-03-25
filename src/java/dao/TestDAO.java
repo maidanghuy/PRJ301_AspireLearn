@@ -18,6 +18,7 @@ import model.Test;
  * @author Asus
  */
 public class TestDAO {
+
     Connection conn;
 
     public TestDAO() {
@@ -87,6 +88,25 @@ public class TestDAO {
         return test; // Trả về null nếu không tìm thấy
     }
 
+     public boolean saveTestScore(int userID, int testID, double score) {
+        String sql = "INSERT INTO TestScore (userID, testID, score, attemptDate) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, userID);
+            stmt.setInt(2, testID);
+            stmt.setDouble(3, score);
+            stmt.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+
+            int rowsInserted = stmt.executeUpdate();
+            return rowsInserted > 0;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         TestDAO dao = new TestDAO();
 //        //Test lay toan bo khoa hoc
@@ -96,10 +116,11 @@ public class TestDAO {
 //            System.out.println(c);
 //        }
 
-          Test test=dao.getByTestID(3);
-          System.out.println(test.getFilePath());
-          System.out.println(test.getCategory());
-          System.out.println(test);
+        Test test = dao.getByTestID(3);
+        System.out.println(test.getFilePath());
+        System.out.println(test.getCategory());
+        System.out.println(test);
+        boolean is=dao.saveTestScore(1, 3, 3.5);
     }
 
 }
