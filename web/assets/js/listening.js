@@ -124,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const question = questions[questionIndex];
         const questionImg = question.getAttribute('data-img');
         const questionAudio = question.getAttribute('data-audio');
+        const questionPart = question.getAttribute('data-part');
+        const audioPlayer = document.querySelector('.audio-player');
 
         // Cập nhật hình ảnh
         if (questionImg && questionImg !== 'null') {
@@ -135,48 +137,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Cập nhật audio
-        let audioToPlay = questionAudio;
-        if (!audioToPlay || audioToPlay === 'null') {
-            // Tìm audio gần nhất không null
-            let foundAudio = null;
-            let searchIndex = questionIndex;
-
-            // Tìm về phía trước
-            while (searchIndex > 0) {
-                searchIndex--;
-                const prevQuestion = questions[searchIndex];
-                const prevAudio = prevQuestion.getAttribute('data-audio');
-                if (prevAudio && prevAudio !== 'null') {
-                    foundAudio = prevAudio;
-                    break;
-                }
-            }
-
-            // Nếu không tìm thấy ở phía trước, tìm về phía sau
-            if (!foundAudio) {
-                searchIndex = questionIndex;
-                while (searchIndex < questions.length - 1) {
-                    searchIndex++;
-                    const nextQuestion = questions[searchIndex];
-                    const nextAudio = nextQuestion.getAttribute('data-audio');
-                    if (nextAudio && nextAudio !== 'null') {
-                        foundAudio = nextAudio;
-                        break;
-                    }
-                }
-            }
-
-            audioToPlay = foundAudio;
-        }
-
-        if (audioToPlay && audioToPlay !== 'null') {
-            const audioPath = audioToPlay.startsWith("/") ? contextPath + audioToPlay : contextPath + "/" + audioToPlay;
+        if (questionAudio && questionAudio !== 'null') {
+            const audioPath = questionAudio.startsWith("/") ? contextPath + questionAudio : contextPath + "/" + questionAudio;
             // Chỉ cập nhật source và load nếu audio khác với audio đang phát
             if (audioSource.src !== audioPath) {
                 audioSource.src = audioPath;
                 audioElement.load();
             }
-            // Tiếp tục phát từ vị trí hiện tại
+            // Hiển thị audio player và tiếp tục phát từ vị trí hiện tại
+            audioPlayer.style.display = 'block';
             audioElement.play();
         }
     }
