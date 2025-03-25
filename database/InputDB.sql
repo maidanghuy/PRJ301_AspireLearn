@@ -296,3 +296,14 @@ VALUES
     (2, 1, '2025-03-08', 80),
     (9, 3, '2025-03-09', 90),
     (3, 1, '2025-03-10', 100); 
+
+INSERT INTO [dbo].[Test] 
+([testID], [testName], [description], [duration], [filePath], [createdAt], [category]) 
+VALUES 
+    (1, 'Listening Test 1', 'Basic listening skills', 45, 
+    'Assignment/Listening/Starter_TOEIC_ListeningUnit1.xlsx', 
+    '2025-03-12 15:23:22.967', 'listening'),
+
+    (2, 'Reading Test 1', 'Basic reading skills', 45, 
+    'Assignment/Reading/Starter_TOEIC_ReadingUnit1.xlsx', 
+    '2025-03-12 15:23:22.967', 'reading');
