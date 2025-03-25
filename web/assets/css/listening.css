@@ -1,0 +1,231 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 25, 2025, 11:38:14 PM
+    Author     : Asus
+*/
+
+.testing {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 20px;
+}
+.left-section {
+    width: 50%;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.right-section {
+    width: 50%;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.audio-section {
+    margin-bottom: 25px;
+}
+.audio-player {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.audio-player audio {
+    width: 100%;
+    height: 40px;
+}
+.image-container {
+    width: 100%;
+    max-height: 350px;
+    overflow: hidden;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+.image-container img {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.question-item {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.question-item.active {
+    display: block;
+}
+.question-text {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    line-height: 1.6;
+    font-weight: 500;
+}
+.answer-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.answer-option {
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.answer-option:hover {
+    background: #e9ecef;
+    border-color: #3498db;
+    transform: translateX(5px);
+}
+.answer-option input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+.question-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+.question-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.question-number {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 16px;
+}
+.question-number:hover {
+    background: #e9ecef;
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+.question-number.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+    transform: translateY(-2px);
+}
+.question-number.answered {
+    background: #2ecc71;
+    color: white;
+    border-color: #2ecc71;
+}
+.countdown-timer {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    background: #f8f9fa;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+}
+.button-group {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    margin-top: 30px;
+}
+.btn-next, .btn-back, .btn-submit {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.btn-next {
+    background: #3498db;
+    color: white;
+}
+.btn-next:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+.btn-back {
+    background: #95a5a6;
+    color: white;
+}
+.btn-back:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+.btn-submit {
+    background: #2ecc71;
+    color: white;
+    padding: 15px 30px;
+    font-size: 18px;
+}
+.btn-submit:hover {
+    background: #27ae60;
+    transform: translateY(-2px);
+}
+#submit-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}

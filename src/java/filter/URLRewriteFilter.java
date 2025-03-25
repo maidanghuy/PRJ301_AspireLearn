@@ -196,7 +196,16 @@ public class URLRewriteFilter implements Filter {
             return;
         }
         
+        if (path.matches("/view/test/submit/\\d+")) {
+            String testId = path.substring(path.lastIndexOf('/') + 1);
+            req.getRequestDispatcher("/DivideServlet?action=submit&id=" + testId).forward(request, response);
+            return;
+        }
         
+        if (path.matches("/view/viewSubmit")) {
+            req.getRequestDispatcher("/views/user/submit.jsp").forward(request, response);
+            return;
+        }
 
         if (path.startsWith("/view/")) {
 

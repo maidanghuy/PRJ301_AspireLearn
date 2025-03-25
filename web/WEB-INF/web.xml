@@ -68,6 +68,14 @@
         <servlet-name>ReadingServlet</servlet-name>
         <servlet-class>controller.ReadingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListeningServlet</servlet-name>
+        <servlet-class>controller.ListeningServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubmitServlet</servlet-name>
+        <servlet-class>controller.SubmitServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
         <url-pattern>/DivideServlet</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>ReadingServlet</servlet-name>
         <url-pattern>/ReadingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeningServlet</servlet-name>
+        <url-pattern>/ListeningServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitServlet</servlet-name>
+        <url-pattern>/SubmitServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

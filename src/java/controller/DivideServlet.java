@@ -131,8 +131,13 @@ public class DivideServlet extends HttpServlet {
                 if(test.getCategory().equalsIgnoreCase("reading")){
                     request.getRequestDispatcher("/ReadingServlet?id=" + testID).forward(request, response);
                 }else{
-                    request.getRequestDispatcher("/TestListenningServlet?id=" + testID).forward(request, response);
+                    request.getRequestDispatcher("/ListeningServlet?id=" + testID).forward(request, response);
                 }
+                break;
+            }
+            case "submit" -> {
+                int testId = Integer.parseInt(request.getParameter("id"));
+                request.getRequestDispatcher("/SubmitServlet?id=" + testId).forward(request, response);
                 break;
             }
             case "viewaccount" -> {
