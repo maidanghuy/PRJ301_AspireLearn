@@ -63,7 +63,7 @@ public class User_CourseDAO {
 
     public User_Course getUser_CourseByID(int userID, int courseID) {
         String sql = "SELECT *\n"
-                + "  FROM [ElearningDB].[dbo].[User_Course]\n"
+                + "  FROM [dbo].[User_Course]\n"
                 + "  where userID = ? and courseID = ?";
         User_Course uc = new User_Course();
         try {
@@ -90,7 +90,7 @@ public class User_CourseDAO {
     
     public static void main(String[] args) {
         User_CourseDAO dao = new User_CourseDAO();
-        User_Course uc = dao.getUser_CourseByID(6, 1);
+        User_Course uc = dao.getUser_CourseByID(17, 1);
         System.out.println(uc);
         
     }

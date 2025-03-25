@@ -65,6 +65,11 @@
                                             </c:if>
 
                                         <h2 class="lesson-detail__title">${c.title}</h2>
+                                        <c:if
+                                            test="${not empty c.contentType and not empty c.filePath 
+                                                    and (c.contentType eq 'Vocabulary')}">
+                                            <img src="${img}${c.source}" alt="alt"/>
+                                        </c:if>
                                         <p class="lesson-detail__description">${c.describe}</p>
 
                                         <!-- Hiển thị filePath nếu contentType là Vocabulary, Grammar hoặc Reading -->
