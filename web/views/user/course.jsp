@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="search-bar">
                                     <img src="${img}/course/Vector.svg" alt="Tìm kiếm">
-                                    <input type="text" placeholder="Tìm kiếm...">
+                                    <input type="text" id="searchInput" placeholder="Tìm kiếm khóa học..." onkeyup="searchCourses()">
                                 </div>
                             </div>
 
@@ -138,6 +138,61 @@
             const filterText = level === 'all' ? 'Tất cả level' : level;
             filterBtn.setAttribute('data-active-filter', filterText);
         }
+        </script>
+        <script>
+        function searchCourses() {
+            const searchInput = document.getElementById('searchInput');
+            const searchText = searchInput.value.toLowerCase();
+            const cards = document.querySelectorAll('.course-card');
+            
+            cards.forEach(card => {
+                const courseName = card.querySelector('h3').textContent.toLowerCase();
+                const courseLevel = card.querySelector('p strong').nextSibling.textContent.toLowerCase();
+                
+                if (courseName.includes(searchText) || courseLevel.includes(searchText)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Add no results message
+            const visibleCards = document.querySelectorAll('.course-card[style="display: block;"]');
+            const noResultsMessage = document.getElementById('noResultsMessage');
+            
+            if (visibleCards.length === 0 && searchText !== '') {
+                if (!noResultsMessage) {
+                    const message = document.createElement('div');
+                    message.id = 'noResultsMessage';
+                    message.className = 'no-results-message';
+                    message.innerHTML = `
+                        <img src="${img}/course/no-results.svg" alt="Không tìm thấy kết quả">
+                        <h3>Không tìm thấy khóa học</h3>
+                        <p>Vui lòng thử lại với từ khóa khác</p>
+                    `;
+                    document.querySelector('.course-container').appendChild(message);
+                }
+            } else if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+        }
+
+        // Add debounce function to improve performance
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply debounce to search function
+        const debouncedSearch = debounce(searchCourses, 300);
+        document.getElementById('searchInput').addEventListener('input', debouncedSearch);
         </script>
 
     </body>

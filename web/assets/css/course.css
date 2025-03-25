@@ -113,11 +113,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 8px;
     padding: 8px 15px;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .search-bar:focus-within {
     border-color: #FB9400;
     box-shadow: 0 0 0 3px rgba(251, 148, 0, 0.1);
+}
+
+.search-bar img {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.search-bar:focus-within img {
+    opacity: 1;
 }
 
 .search-bar input {
@@ -127,6 +140,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding: 5px;
     font-size: 0.95rem;
     outline: none;
+}
+
+.search-bar input::placeholder {
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.search-bar:focus-within input::placeholder {
+    color: #666;
 }
 
 .course-container {
@@ -140,7 +162,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: white;
     border-radius: 12px;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     position: relative;
 }
@@ -408,6 +430,72 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: #FB9400;
     color: white;
     border-color: #e68500;
+}
+
+/* No results message styling */
+.no-results-message {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.no-results-message img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.no-results-message h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.no-results-message p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* Add animation for search results */
+.course-card {
+    transition: all 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+.course-card[style*="display: none"] {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Add loading indicator for search */
+.search-bar::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #FB9400;
+    border-top-color: transparent;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.search-bar.searching::after {
+    opacity: 1;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 
