@@ -69,15 +69,18 @@
                                     <button class="icon-btn">
                                         <img src="${img}/course/Filter.svg" alt="Filter" />
                                         <ul class="icon-catetory">
-                                            <li class="icon-catetory-sub hidden">
-                                                <a href="">Loại tài liệu</a>
+                                            <li class="icon-catetory-sub">
+                                                <a href="#" onclick="filterByLevel('all')">Tất cả level</a>
                                             </li>
-                                            <li class="icon-catetory-sub hidden"><a
-                                                    href="">Tiến độ hoàn thành</a></li>
-                                            <li class="icon-catetory-sub hidden"><a
-                                                    href="">Giảng viên</a></li>
-                                            <li class="icon-catetory-sub hidden"><a
-                                                    href="">Trạng thái</a></li>
+                                            <li class="icon-catetory-sub">
+                                                <a href="#" onclick="filterByLevel('Beginner')">Beginner</a>
+                                            </li>
+                                            <li class="icon-catetory-sub">
+                                                <a href="#" onclick="filterByLevel('Intermediate')">Intermediate</a>
+                                            </li>
+                                            <li class="icon-catetory-sub">
+                                                <a href="#" onclick="filterByLevel('Advanced')">Advanced</a>
+                                            </li>
                                         </ul>
                                     </button>
                                 </div>
@@ -90,7 +93,7 @@
                             <div class="course-container">
                                 <% for (Course course : courseL) {%>
                                 <div class="course-card">
-                                    <img src="${img}<%= course.getLinkimg()%>"
+                                    <img src="${img}/course/<%= course.getLinkimg()%>"
                                          alt="<%= course.getCourseName()%>"
                                          class="course-img">
                                     <h3>
@@ -118,6 +121,24 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
         <%@ include file="../includes/scripts.jsp" %>
         <script src="${js}/course.js"></script>
+        <script>
+        function filterByLevel(level) {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                const courseLevel = card.querySelector('p strong').nextSibling.textContent.trim();
+                if (level === 'all' || courseLevel === level) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Update active filter button text
+            const filterBtn = document.querySelector('.icon-btn');
+            const filterText = level === 'all' ? 'Tất cả level' : level;
+            filterBtn.setAttribute('data-active-filter', filterText);
+        }
+        </script>
 
     </body>
 
