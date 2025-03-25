@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Filter.java to edit this template
  */
@@ -172,6 +172,27 @@ public class URLRewriteFilter implements Filter {
         }
 
         // View
+        // Handle lesson detail URLs
+        if (path.matches("/view/course/lesson")) {
+            req.getRequestDispatcher("/DivideServlet?action=lesson").forward(request, response);
+            return;
+        }
+        
+        if (path.matches("/view/course/lesson/\\d+")) {
+            String lessonID = path.substring(path.lastIndexOf('/') + 1);
+            req.getRequestDispatcher("/DivideServlet?action=viewlesson&id=" + lessonID).forward(request, response);
+            return;
+        }
+        
+        // Handle course detail URLs
+        if (path.matches("/view/course/\\d+")) {
+            String courseId = path.substring(path.lastIndexOf('/') + 1);
+            req.getRequestDispatcher("/DivideServlet?action=viewdetailscourse&id=" + courseId).forward(request, response);
+            return;
+        }
+        
+        
+
         if (path.startsWith("/view/")) {
 
             String action = path.substring(6); // Remove "/view/" prefix
@@ -188,7 +209,7 @@ public class URLRewriteFilter implements Filter {
                     return;
                 }
             }
-            
+
             session.setAttribute("option", action);
             req.getRequestDispatcher("/DivideServlet?action=view" + action).forward(request, response);
             return;
@@ -211,11 +232,11 @@ public class URLRewriteFilter implements Filter {
         if (path.startsWith("/dashboard/")) {
 
             int check = CheckRole.checkRole(req, resp);
-            if (check == -1){
+            if (check == -1) {
                 String newPath = req.getContextPath() + "/auth/login";
                 resp.sendRedirect(newPath);
                 return;
-            }else if (check == 1){
+            } else if (check == 1) {
                 String newPath = req.getContextPath() + "/view/home";
                 resp.sendRedirect(newPath);
             }
@@ -226,7 +247,7 @@ public class URLRewriteFilter implements Filter {
             if (!action.matches("users|courses|materials|tests|settings")) {
                 action = "users"; // Mặc định là "users" nếu không hợp lệ
             }
-            
+
             session.setAttribute("option", action);
 
             req.getRequestDispatcher("/DivideServlet?action=admin" + action).forward(request, response);

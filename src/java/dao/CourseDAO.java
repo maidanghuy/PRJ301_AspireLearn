@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import model.Course;
 
@@ -247,6 +248,46 @@ public class CourseDAO {
         }
         return courses;
     }
+    
+    public ArrayList<Course> getCoursesCreatedThisMonth() {
+        ArrayList<Course> courseList = new ArrayList<>();
+        String query = "SELECT * FROM Courses WHERE MONTH(createdAt) = ? AND YEAR(createdAt) = ?";
+
+        try {
+            PreparedStatement stmt = conn.prepareStatement(query);
+
+            // Lấy tháng và năm hiện tại
+            Calendar cal = Calendar.getInstance();
+            int currentMonth = cal.get(Calendar.MONTH) + 1; // Tháng bắt đầu từ 0 nên cần +1
+            int currentYear = cal.get(Calendar.YEAR);
+
+            stmt.setInt(1, currentMonth);
+            stmt.setInt(2, currentYear);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Course course = new Course(
+                        rs.getInt("courseID"),
+                        rs.getString("courseName"),
+                        rs.getString("description"),
+                        rs.getString("level"),
+                        rs.getDate("createdAt"),
+                        rs.getDate("updatedAt"),
+                        rs.getString("details"),
+                        rs.getString("learningPathway"),
+                        rs.getString("commitment"),
+                        rs.getString("linkimg")
+                );
+                courseList.add(course);
+            }
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return courseList;
+    }
 
     public static void main(String[] args) {
         CourseDAO cdao = new CourseDAO();
@@ -255,6 +296,7 @@ public class CourseDAO {
 //        System.out.println(cdao.getAllCourse()); 
 //        System.out.println(cdao.getTotalCourses(null, "Beginner"));
 //        System.out.println(cdao.getCourses(0, 10, "toeic", "Intermediate"));
+        System.out.println(cdao.getCoursesCreatedThisMonth());
     }
 
 }

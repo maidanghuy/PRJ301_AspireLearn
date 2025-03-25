@@ -1,0 +1,297 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 24, 2025, 5:46:10 PM
+    Author     : macbookpro
+*/
+
+/* Color variables */
+.lesson {
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+    padding: 15px 0;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.breadcrumb-nav a {
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-nav a:hover {
+    color: #FB9400;
+}
+
+.breadcrumb-nav span {
+    color: #FB9400;
+    font-weight: 500;
+}
+
+/* Course Progress Section */
+.course-progress {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin: 20px 0;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.progress-stats {
+    flex: 1;
+    min-width: 250px;
+}
+
+.completed-lessons {
+    display: block;
+    font-size: 15px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FB9400, #ffa726);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.course-meta {
+    display: flex;
+    gap: 20px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.course-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-meta i {
+    color: #FB9400;
+}
+
+/* Lesson Container */
+.lesson-container {
+    padding: 30px;
+}
+
+.course-info {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.course-title {
+    font-size: 32px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.course-description {
+    color: #6c757d;
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Lesson List */
+.lesson-list {
+    display: grid;
+    gap: 20px;
+}
+
+.lesson-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #eee;
+}
+
+.lesson-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(251, 148, 0, 0.15);
+    border-color: #FB9400;
+}
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.lesson-title {
+    font-size: 18px;
+    color: #2c3e50;
+    margin: 0;
+    font-weight: 600;
+}
+
+.lesson-duration {
+    background: #f8f9fa;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.lesson-duration::before {
+    content: '\f017';
+    font-family: 'Font Awesome 5 Free';
+    color: #FB9400;
+}
+
+.lesson-preview {
+    color: #6c757d;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lesson-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-start {
+    background: #FB9400;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-start::after {
+    content: '\f054';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 12px;
+}
+
+.btn-start:hover {
+    background: #e08500;
+    transform: translateX(3px);
+}
+
+.lesson-date {
+    color: #6c757d;
+    font-size: 13px;
+}
+
+/* No Lessons State */
+.no-lessons {
+    text-align: center;
+    padding: 50px 20px;
+    color: #6c757d;
+}
+
+.no-lessons i {
+    font-size: 48px;
+    color: #FB9400;
+    margin-bottom: 20px;
+}
+
+.no-lessons h3 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.no-lessons p {
+    font-size: 16px;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lesson {
+        padding: 15px;
+    }
+
+    .progress-info {
+        flex-direction: column;
+    }
+
+    .course-meta {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .lesson-container {
+        padding: 20px;
+    }
+
+    .course-title {
+        font-size: 24px;
+    }
+
+    .lesson-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .lesson-duration {
+        align-self: flex-start;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lesson-card {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.lesson-card:nth-child(n) {
+    animation-delay: calc(0.1s * var(--i));
+}

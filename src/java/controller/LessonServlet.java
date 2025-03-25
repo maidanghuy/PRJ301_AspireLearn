@@ -4,25 +4,21 @@
  */
 package controller;
 
-import dao.UserDAO;
+import dao.LessonDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import model.User;
-import util.CheckRole;
-import util.Pagination;
+import model.Lesson;
 
 /**
  *
  * @author macbookpro
  */
-@WebServlet("/dashboard/users")
-public class UserManagementServlet extends HttpServlet {
+public class LessonServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +37,10 @@ public class UserManagementServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UserManagementServlet</title>");
+            out.println("<title>Servlet LessonServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet UserManagementServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LessonServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,53 +59,22 @@ public class UserManagementServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
-        int check = CheckRole.checkRole(request, response);
-        if (check == -1){
-            String newPath = request.getContextPath() + "/auth/login";
-            response.sendRedirect(newPath);
-            return;
-        }else if (check == 1){
-            String newPath = request.getContextPath() + "/view/home";
-            response.sendRedirect(newPath);
+        if (request.getSession().getAttribute("user") == null) {
+
+            String mess = "Please Login!";
+            request.setAttribute("error", mess);
+
+//            request.getRequestDispatcher("login").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/auth/login");
             return;
         }
+        ArrayList<Lesson> lessons = new ArrayList<>();
+        LessonDAO ldao = new LessonDAO();
 
-        // Lấy tham số phân trang và tìm kiếm từ request
-        int pageSize = Pagination.getPageSize(request, 15); // Default 15
-        int currentPage = Pagination.getCurrentPage(request, 1); // Default 1
-        String search = request.getParameter("search");
-        String roleFilter = request.getParameter("roleFilter");
-        String statusFilter = request.getParameter("statusFilter");
-
-        // Tính toán offset cho database
-        int offset = (currentPage - 1) * pageSize;
-
-        // Khởi tạo DAO
-        UserDAO userDAO = new UserDAO();
-
-        // Lấy tổng số users (có thể có tìm kiếm, lọc theo role và status)
-        int totalUsers = userDAO.getTotalUsers(search, roleFilter, statusFilter);
-
-        // Tính tổng số trang
-        int totalPages = (int) Math.ceil((double) totalUsers / pageSize);
-
-        // Lấy danh sách users theo bộ lọc
-        ArrayList<User> users = userDAO.getUsers(offset, pageSize, search, roleFilter, statusFilter);
-
-        // Set attributes cho JSP
-        request.setAttribute("users", users);
-        request.setAttribute("currentPage", currentPage);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("pageSize", pageSize);
-        request.setAttribute("totalUsers", totalUsers);
-        request.setAttribute("search", search);
-        request.setAttribute("roleFilter", roleFilter);
-        request.setAttribute("statusFilter", statusFilter);
-
-        // Forward đến trang JSP
-        request.getRequestDispatcher("/views/admin/users.jsp").forward(request, response);
-
+        int courseID = Integer.parseInt(request.getParameter("id"));
+        lessons = ldao.getAllLessonsOfCourse(courseID);
+        request.setAttribute("lessons", lessons);
+        request.getRequestDispatcher("views/user/lesson.jsp").forward(request, response);
     }
 
     /**

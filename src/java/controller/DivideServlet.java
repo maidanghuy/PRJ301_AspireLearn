@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import model.Course;
 import model.User;
+import util.EmailValidator;
 
 /**
  *
@@ -89,6 +90,7 @@ public class DivideServlet extends HttpServlet {
                 request.getRequestDispatcher("views/auth/register.jsp").forward(request, response);
                 break;
             }
+
             case "editaccount" -> {
                 request.getRequestDispatcher("views/auth/editAccount.jsp").forward(request, response);
                 break;
@@ -98,13 +100,20 @@ public class DivideServlet extends HttpServlet {
                 break;
             }
             case "viewmaterial" -> {
+                request.getRequestDispatcher("/MaterialServlet").forward(request, response);
                 break;
             }
             case "viewcourse" -> {
                 request.getRequestDispatcher("/CourseServlet").forward(request, response);
                 break;
             }
+            case "viewdetailscourse" -> {
+                int courseId = Integer.parseInt(request.getParameter("id"));
+                request.getRequestDispatcher("/DetailsCourseServlet?id=" + courseId).forward(request, response);
+                break;
+            }
             case "viewtest" -> {
+                request.getRequestDispatcher("/TestServlet").forward(request, response);
                 break;
             }
             case "viewaccount" -> {
@@ -117,6 +126,18 @@ public class DivideServlet extends HttpServlet {
                 request.setAttribute("listCourseOrder", listCourseOrder);
                 request.getRequestDispatcher("views/user/account.jsp").forward(request, response);
                 break;
+            }
+            case "viewlesson" -> {
+                int lessonId = Integer.parseInt(request.getParameter("id"));
+                request.getRequestDispatcher("/LoadContent?id=" + lessonId).forward(request, response);
+                break;
+            }
+            case "lesson" -> {
+                HttpSession session = request.getSession();
+                int courseID = (Integer) session.getAttribute("courseID");
+                Course c = (Course) session.getAttribute("course");
+                System.out.println(c);
+                request.getRequestDispatcher("/LessonServlet?id=" + courseID).forward(request, response);
             }
             case "adminusers" -> {
 //                UserDAO udao = new UserDAO();
@@ -263,6 +284,16 @@ public class DivideServlet extends HttpServlet {
                 return;
             }
 
+            // Kiểm tra email có hợp lệ không bằnh API
+            if (!EmailValidator.checkEmail(email)) {
+                request.getSession().setAttribute("error", "Email không tồn tại hoặc không hợp lệ");
+                request.getSession().setAttribute("username", username);
+                request.getSession().setAttribute("email", email);
+                request.getSession().setAttribute("dateOfBirth", dateOfBirthStr);
+                response.sendRedirect("auth/register");
+                return;
+            }
+
             // Kiểm tra ngày sinh
             userDAO = new UserDAO();
             Date dateOfBirth = null;
@@ -359,7 +390,14 @@ public class DivideServlet extends HttpServlet {
             request.getSession().setAttribute("error", "Email đã được sử dụng! Vui lòng chọn email khác.");
             response.sendRedirect("edit/account");
             return;
-        } else {
+        }
+
+        // Kiểm tra email có hợp lệ không bằnh API
+        if (!EmailValidator.checkEmail(email)) {
+            request.getSession().setAttribute("error", "Email không tồn tại hoặc không hợp lệ");
+            response.sendRedirect("edit/account");
+            return;
+        }else {
             user.setEmail(email);
         }
 
