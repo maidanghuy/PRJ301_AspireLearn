@@ -74,7 +74,14 @@
     </servlet>
     <servlet>
         <servlet-name>SubmitServlet</servlet-name>
-        <servlet-class>controller.SubmitServlet</servlet-class>
+        <servlet-class>controller.SubmitServlet</servlet-class>    </servlet>
+    <servlet>
+        <servlet-name>ForgotPassword</servlet-name>
+        <servlet-class>controller.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResetPassword</servlet-name>
+        <servlet-class>controller.ResetPassword</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
@@ -150,7 +157,14 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SubmitServlet</servlet-name>
-        <url-pattern>/SubmitServlet</url-pattern>
+        <url-pattern>/SubmitServlet</url-pattern>    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPassword</servlet-name>
+        <url-pattern>/ForgotPassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPassword</servlet-name>
+        <url-pattern>/ResetPassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
