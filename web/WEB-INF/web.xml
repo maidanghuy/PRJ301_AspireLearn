@@ -49,19 +49,24 @@
         <servlet-class>controller.MaterialServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>LoadContentServlet</servlet-name>
         <servlet-class>controller.LoadContentServlet</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>TestServlet</servlet-name>
         <servlet-class>controller.TestServlet</servlet-class>
-
     </servlet>
     <servlet>
         <servlet-name>ReadingServlet</servlet-name>
         <servlet-class>controller.ReadingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListeningServlet</servlet-name>
+        <servlet-class>controller.ListeningServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SubmitServlet</servlet-name>
+        <servlet-class>controller.SubmitServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DivideServlet</servlet-name>
@@ -112,19 +117,24 @@
         <url-pattern>/LoadVnpay</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>LoadContentServlet</servlet-name>
         <url-pattern>/LoadContent</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>TestServlet</servlet-name>
         <url-pattern>/TestServlet</url-pattern>
-
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ReadingServlet</servlet-name>
         <url-pattern>/ReadingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListeningServlet</servlet-name>
+        <url-pattern>/ListeningServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SubmitServlet</servlet-name>
+        <url-pattern>/SubmitServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

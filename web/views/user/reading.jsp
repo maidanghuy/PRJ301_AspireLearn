@@ -165,6 +165,9 @@
             </div>
         </div>
         <%@ include file="../includes/chatbot.jsp" %>
+         <script >
+                const urlPath = "${url}";
+        </script>
         <script>
             const imgPath = "${img}";
             window.onload = function () {
