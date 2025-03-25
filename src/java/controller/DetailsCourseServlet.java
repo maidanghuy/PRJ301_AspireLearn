@@ -89,8 +89,14 @@ public class DetailsCourseServlet extends HttpServlet {
 
         //        ----------------------------
         //new
-        User user = (User) request.getSession().getAttribute("user");
-        int userID = user.getUserID();
+        int userID = 0;
+        if ((User) request.getSession().getAttribute("user") != null) {
+            User user = (User) request.getSession().getAttribute("user");
+            userID = user.getUserID();
+        } else {
+            response.sendRedirect(request.getContextPath()+"/auth/login");
+            return;
+        }
 //        int coureID = (int) request.getSession().getAttribute("coureID");
         User_CourseDAO ucDao = new User_CourseDAO();
         User_Course uc = ucDao.getUser_CourseByID(userID, id);
