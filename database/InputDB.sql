@@ -258,14 +258,21 @@ N'Khóa học TOEIC nâng cao dành cho người học hướng tới mục tiê
 -- Chèn dữ liệu vào bảng Content
 INSERT INTO Content (contentType, title, filePath, videoPath, audioFile, source, example, describe, createdAt)
 VALUES
-    ('Vocabulary', 'Essential IELTS Vocabulary', 'files/essential_ielts_vocabulary.pdf', NULL, NULL, NULL, NULL, 'Comprehensive IELTS vocabulary guide', GETDATE()),
-    ('Vocabulary', 'IELTS Academic Vocabulary', 'files/ielts_academic_vocab.pdf', NULL, NULL, NULL, NULL, 'Key academic vocabulary for IELTS', GETDATE()),
-    ('Grammar', 'Basic IELTS Grammar', 'files/basic_ielts_grammar.pdf', 'https://www.youtube.com/embed/CfU7rIZPnNY?si=Fy6R3f-7AEkEqArK', NULL, NULL, NULL, 'Introduction to fundamental IELTS grammar rules', GETDATE()),
-    ('Grammar', 'Advanced Grammar for IELTS', 'files/advanced_grammar_ielts.pdf', 'https://www.youtube.com/embed/BaX7xwa8Vh4?si=YOokbhdmd2wtMkTQ', NULL, NULL, NULL, 'Advanced grammar concepts for IELTS', GETDATE()),
-    ('Reading', 'IELTS Reading Strategies', 'files/reading_strategies.pdf', NULL, NULL, NULL, NULL, 'Effective strategies for IELTS reading section', GETDATE()),
-    ('Reading', 'IELTS Reading Practice', 'files/reading_practice_tests.pdf', NULL, NULL, NULL, NULL, 'Practice tests for IELTS reading comprehension', GETDATE()),
-    ('Listening', 'IELTS Listening Test 1', 'files/listening_test1_transcript.pdf', NULL, 'audio/listening_test1.mp3', NULL, NULL, 'Full IELTS listening test with transcript', GETDATE()),
-    ('Listening', 'IELTS Listening Tips', 'files/listening_tips.pdf', NULL, 'audio/listening_tips.mp3', NULL, NULL, 'Helpful listening tips for IELTS exam', GETDATE());
+    ('Vocabulary', 'Essential IELTS Vocabulary', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, NULL, '/content/voc1.png', NULL, 'Comprehensive IELTS vocabulary guide', GETDATE()),
+    ('Vocabulary', 'IELTS Academic Vocabulary', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, NULL, '/content/voc2.png', NULL, 'Key academic vocabulary for IELTS', GETDATE()),
+    ('Grammar', 'Basic IELTS Grammar', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', 'https://www.youtube.com/embed/CfU7rIZPnNY?si=Fy6R3f-7AEkEqArK', NULL, NULL, NULL, 'Introduction to fundamental IELTS grammar rules', GETDATE()),
+    ('Grammar', 'Advanced Grammar for IELTS', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', 'https://www.youtube.com/embed/BaX7xwa8Vh4?si=YOokbhdmd2wtMkTQ', NULL, NULL, NULL, 'Advanced grammar concepts for IELTS', GETDATE()),
+    ('Reading', 'IELTS Reading Strategies', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, NULL, NULL, NULL, 'Effective strategies for IELTS reading section', GETDATE()),
+    ('Reading', 'IELTS Reading Practice', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, NULL, NULL, NULL, 'Practice tests for IELTS reading comprehension', GETDATE()),
+    ('Listening', 'IELTS Listening Test 1', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, 'audio/listening_test1.mp3', NULL, NULL, 'Full IELTS listening test with transcript', GETDATE()),
+    ('Listening', 'IELTS Listening Tips', 'https://drive.google.com/drive/folders/1tCPkrOFakb_L-p3-HpjMQOEZZQM5QbOg?usp=drive_link', NULL, 'audio/listening_tips.mp3', NULL, NULL, 'Helpful listening tips for IELTS exam', GETDATE());
+
+
+	-- DBCC CHECKIDENT ('Content', RESEED, 0);
+	-- delete from Content;
+	-- delete from Lesson_Content;
+	-- delete from Lesson;
+	-- DBCC CHECKIDENT ('Lesson', RESEED, 0);
 
 -- Chèn dữ liệu vào bảng Lesson
 INSERT INTO Lesson (courseID, lessonTitle, content, duration, createdAt)
