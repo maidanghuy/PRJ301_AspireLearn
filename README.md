@@ -195,7 +195,6 @@ PRJ301_AspireLearn/
 
   - Database Design & Implementation
   - Backend Development
-    - API Development
     - Business Logic Implementation
   - Frontend Development
     - UI Components
@@ -208,6 +207,7 @@ PRJ301_AspireLearn/
     - Course Content Structure
     - Lesson Content Management
   - Payment Integration
+    - API Development
     - Payment Gateway Integration
     - Transaction Management
     - Payment Analytics
@@ -268,7 +268,7 @@ Project được phân phối dưới giấy phép [MIT License](LICENSE).
 - **Email**: huymaidang.work@gmail.com
 - **Website**: [aspirelearn.com](https://aspirelearn.com)
 - **GitHub Issues**: [Report Bug](https://github.com/maidanghuy/PRJ301_AspireLearn/issues)
-- **Discord**: [Join Community](https://discord.gg/aspirelearn)
+- **Discord**: [Join Community](https://discord.gg/NuDvgwgy)
 
 ## 🤝 Đóng Góp
 
