@@ -61,6 +61,7 @@
 - **JDBC**: Tương tác với database
 - **Jakarta EE**: Jakarta Enterprise Edition
 - **Ant Build**: Quản lý và build project
+- **Gson**: Thư viện chuyển đổi Java Objects sang JSON và ngược lại
 
 ### Frontend
 
@@ -69,6 +70,7 @@
 - **Bootstrap 5**: Framework UI
 - **jQuery**: DOM manipulation
 - **AJAX**: Gọi API bất đồng bộ
+- **JSON**: Định dạng dữ liệu trao đổi giữa client và server
 
 ### Database & Storage
 
