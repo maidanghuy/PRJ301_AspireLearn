@@ -1,6 +1,6 @@
 # 🎓 AspireLearn - Nền Tảng Học Tập Trực Tuyến Thông Minh
 
-![Project Banner](assets/images/banner.png)
+![Project Banner](web/assets/banner.png)
 
 [![Build Status](https://img.shields.io/travis/maidanghuy/PRJ301_AspireLearn/master.svg)](https://travis-ci.org/maidanghuy/PRJ301_AspireLearn)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
