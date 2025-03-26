@@ -40,7 +40,7 @@
                     <div class="course">
                         <div class="course__banner">
                             <img
-                                src="<%=course.getLinkimg()%>"
+                                src="${img}/course/<%=course.getLinkimg()%>"
                                 alt="<%=course.getCourseName()%>"
                                 class="course_banner_img"
                                 />

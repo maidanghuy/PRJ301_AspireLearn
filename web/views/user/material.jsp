@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../includes/path-config.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -227,9 +228,9 @@
                     </div>
                 </div>
             </div>
-        </c:forEach>
+        </c:forEach>       
     </body>
-
+    
 </html>
 
 

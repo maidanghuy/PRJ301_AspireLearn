@@ -47,3 +47,4 @@ src/java/constant/IGoogleInfo.java
 src/java/constant/IGetProspect.java
 src/java/constant/IEmail.java
 web/assets/js/config.js
+/dist/

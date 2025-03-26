@@ -3,15 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/src/java/controller/DivideServlet.java</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/includes/path-config.jsp</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/auth/login.jsp</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/assets/js/admin/users.js</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/admin/users.jsp</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/includes/scripts.jsp</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/includes/sidebar.jsp</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/assets/images/navbar_icon/Logo-min.svg</file>
-            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/AspireLearn/web/views/admin/dashboard.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/db/DatabaseInfo.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/material.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/account.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/test.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/includes/navbar.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/DivideServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/filter/URLRewriteFilter.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/reading.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/course.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/listening.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/includes/path-config.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/includes/header.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/includes/scripts.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/CourseManagementServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/MaterialServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/CourseServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/detailscourse.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/submit.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/DetailsCourseServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/LessonServlet.java</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/web/views/user/lesson.jsp</file>
+            <file>file:/Users/macbookpro/Documents/Documents%20-%20Macbook’s%20MacBook%20Pro%20-%201/FPTU/Semester%204/PRJ301/Demo_PR/PRJ301_AspireLearn/src/java/controller/ForgotPassword.java</file>
         </group>
     </open-files>
 </project-private>
