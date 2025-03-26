@@ -125,7 +125,7 @@
                 </footer>
             </div>
         </div>
-        <%@ include file="../includes/chatbot.jsp" %>
+        <%--<%@ include file="../includes/chatbot.jsp" %>--%>
         <script>
             const imgPath = "${img}";
             window.onload = function () {
@@ -134,7 +134,7 @@
                     alert(message);
                 }
             };
-        </script></script>
+        </script>
     <script>
 
         const contextPath = "${pageContext.request.contextPath}";

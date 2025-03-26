@@ -18,6 +18,6 @@ public interface DatabaseInfo {
             + DBNAME
             + ";encrypt=false;trustServerCertificate=true";
     final public static String DBUSER = "sa";
-    final public static String DBPASS = "Lequan322004.";
+    final public static String DBPASS = "Huy@31082004";
 
 }

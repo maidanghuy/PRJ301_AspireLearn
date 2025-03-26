@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../includes/path-config.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,7 @@
             <div class="container-right">
                 <div class="main-content">
                     <%@ include file="../includes/header.jsp" %>
-                                        <div class="testing">
+                    <div class="testing">
 
                         <div class="question-container">
 
@@ -98,6 +99,14 @@
 
 
                                 <div class="question-item part${question.part}">
+                                    <c:if test="${not empty question.part && not empty question.paragraph}">
+                                        <c:set var="formattedParagraph" value="${fn:replace(question.paragraph, '/', '<p></p>')}" />
+                                        <div class="paragraph-text">
+                                            Part ${question.part}: <p>${formattedParagraph}</p>
+                                        </div>
+
+                                    </c:if>
+
                                     <div class="question-text" id="question${questionNumber}" ">
                                         Question ${questionNumber}: ${question.question}
                                     </div>
@@ -164,9 +173,9 @@
                 </footer>
             </div>
         </div>
-        <%@ include file="../includes/chatbot.jsp" %>
-         <script >
-                const urlPath = "${url}";
+        <%--<%@ include file="../includes/chatbot.jsp" %>--%>
+        <script >
+            const urlPath = "${url}";
         </script>
         <script>
             const imgPath = "${img}";
@@ -176,6 +185,16 @@
                     alert(message);
                 }
             };
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                let paragraphDiv = document.querySelector(".paragraph-text");
+                if (paragraphDiv) {
+                    let text = paragraphDiv.innerHTML;
+                    let parts = text.split("/").map(part => `<p>${part.trim()}</p>`).join("");
+                    paragraphDiv.innerHTML = parts;
+                }
+            });
         </script>
         <!-- Xóa logoutMessage ngay lập tức -->
         <c:remove var="logoutMessage" scope="session" />

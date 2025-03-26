@@ -24,7 +24,11 @@ public class MaterialServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        MaterialDAO dao = new MaterialDAO();
+        List<Material> materials = dao.getAllMaterials();
+        request.setAttribute("materials", materials);
+        request.getRequestDispatcher("/views/user/material.jsp").forward(request, response);
     }
 
     @Override
